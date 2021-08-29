@@ -7,14 +7,16 @@
     "build": "next build && next export"
   },
   "dependencies": {
+    "is-url": "^1.2.4",
     "next": "^11.1.0",
+    "prepend-http": "^4.0.0",
     "react": "^17.0.2",
     "react-bootstrap-icons": "^1.5.0",
     "react-dom": "^17.0.2",
-    "react-modal": "^3.14.3",
-    "react-use": "^17.2.4"
+    "react-modal": "^3.14.3"
   },
   "devDependencies": {
+    "@types/is-url": "^1.2.30",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "@types/react-modal": "^3.12.1",

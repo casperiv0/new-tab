@@ -91,7 +91,7 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
           </div>
 
           <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="show-search">Show search</label>
+            <label htmlFor="show-search">Search</label>
 
             <div style={{ display: "flex" }}>
               <button

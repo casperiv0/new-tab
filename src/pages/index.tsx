@@ -1,44 +1,39 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
-import useLocalStorage from "react-use/lib/useLocalStorage";
 import { getGreeting } from "lib/greeting";
 import { getTime } from "lib/time";
 import { Settings } from "components/Settings";
 import {
   POSITION_CLASSES,
   Positions,
-  LOCAL_GREETING_KEY,
   Settings as ISettings,
   DEFAULT_SETTINGS,
 } from "lib/constants";
 import { Search } from "components/Search";
+import { getLocalSettings, saveLocalSettings } from "lib/settings";
 
 export default function Index() {
   const [open, setOpen] = React.useState(false);
   const [greeting, setGreeting] = React.useState(getGreeting());
   const [time, setTime] = React.useState(getTime());
 
-  const [rawSettings] = useLocalStorage<ISettings>(LOCAL_GREETING_KEY, DEFAULT_SETTINGS);
   const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
     setGreeting(getGreeting());
-
-    if (rawSettings) {
-      setSettings(rawSettings);
-    }
+    setSettings(getLocalSettings());
 
     const interval = setInterval(() => {
       setTime(getTime());
     }, 1_000);
 
     return () => clearInterval(interval);
-  }, [rawSettings]);
+  }, []);
 
   function saveSettings(s: ISettings) {
     setSettings(s);
-    localStorage.setItem(LOCAL_GREETING_KEY, JSON.stringify({ ...s }));
+    saveLocalSettings(s);
   }
 
   const positionStyle = {
@@ -52,7 +47,12 @@ export default function Index() {
       </Head>
 
       <>
-        <button style={positionStyle} onClick={() => setOpen(true)} className="settingsBtn">
+        <button
+          aria-label="Enter settings"
+          style={positionStyle}
+          onClick={() => setOpen(true)}
+          className="settingsBtn"
+        >
           <Gear fill="#ffffff" width="20px" height="20px" />
         </button>
 

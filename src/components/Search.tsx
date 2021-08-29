@@ -1,4 +1,6 @@
 import * as React from "react";
+import isUrl from "is-url";
+import prependHttp from "prepend-http";
 
 export const Search = ({ focusable }: { focusable: boolean }) => {
   const [search, setSearch] = React.useState("");
@@ -30,7 +32,12 @@ export const Search = ({ focusable }: { focusable: boolean }) => {
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    window.location.href = `https://duckduckgo.com?q=${encodeURIComponent(search)}`;
+    const url = prependHttp(search, { https: !search.startsWith("localhost") });
+    if (isUrl(url)) {
+      return (window.location.href = url);
+    }
+
+    return (window.location.href = `https://duckduckgo.com?q=${encodeURIComponent(search)}`);
   }
 
   return (

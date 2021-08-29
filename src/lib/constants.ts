@@ -15,6 +15,6 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  showSearch: true,
+  showSearch: false,
   position: Positions.BOTTOM_RIGHT,
 } as const;

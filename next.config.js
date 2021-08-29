@@ -1,5 +1,8 @@
 module.exports = {
   reactStrictMode: true,
+  experimental: {
+    esmExternals: true,
+  },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.resolve.alias = {
