@@ -1,0 +1,45 @@
+.topLeftContainer {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+
+  h1,
+  h2 {
+    text-align: start;
+  }
+}
+
+.topRightContainer {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+}
+
+.bottomRightContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.bottomLeftContainer {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+
+  h1,
+  h2 {
+    text-align: start;
+  }
+}
+
+/** h1 */
+.greetingText {
+  font-size: 4em;
+  text-align: end;
+}
+
+/** h2 */
+.timeText {
+  font-size: 3em;
+  text-align: end;
+}

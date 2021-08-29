@@ -1,0 +1,25 @@
+.positionBtn {
+  background: none;
+  border: 1.5px solid gray;
+  width: 100%;
+
+  margin-top: 0.8em;
+
+  color: #ffffff;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  cursor: pointer;
+
+  transition: 200ms;
+
+  &:hover:enabled,
+  &.selected {
+    color: #000;
+    background: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
