@@ -1,5 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
+import { Gear } from "react-bootstrap-icons";
 import useLocalStorage from "react-use/lib/useLocalStorage";
 import { getGreeting } from "lib/greeting";
 import { getTime } from "lib/time";
@@ -12,8 +13,11 @@ export default function Index() {
   const [time, setTime] = React.useState(getTime());
 
   const [position, setPosition] = React.useState(Positions.BOTTOM_RIGHT);
-
   const [rawPosition] = useLocalStorage(LOCAL_GREETING_KEY, Positions.BOTTOM_RIGHT);
+
+  const positionStyle = {
+    [position === Positions.TOP_LEFT ? "right" : "left"]: "1rem",
+  };
 
   React.useEffect(() => {
     setGreeting(getGreeting());
@@ -36,7 +40,11 @@ export default function Index() {
       </Head>
 
       <>
-        <div onClick={() => setOpen(true)} className={`${POSITION_CLASSES[position]}Container`}>
+        <button style={positionStyle} onClick={() => setOpen(true)} className="settingsBtn">
+          <Gear fill="#ffffff" width="20px" height="20px" />
+        </button>
+
+        <div className={`${POSITION_CLASSES[position]}Container`}>
           <h1 className="greetingText">{greeting}</h1>
           <h2 className="timeText">
             {time.dayName} • {time.formattedTime}

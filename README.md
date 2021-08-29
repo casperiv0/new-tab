@@ -5,4 +5,4 @@ Inspired by <https://github.com/dustinrouillard/tabatha>. This is my âœ¨specialâ
 ## Todo
 
 - [ ] Weather
-- [ ] Settings icon (open settings by clicking the greeting text.)
+- [x] Settings icon

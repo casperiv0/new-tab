@@ -1,3 +1,23 @@
+.settingsBtn {
+  position: fixed;
+  top: 1rem;
+
+  display: grid;
+  place-items: center;
+
+  transition: 200ms;
+
+  background: none;
+  padding: 1em;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #131313;
+  }
+}
+
 .topLeftContainer {
   position: fixed;
   top: 2rem;
