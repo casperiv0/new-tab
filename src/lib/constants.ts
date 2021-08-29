@@ -7,4 +7,14 @@ export enum Positions {
   BOTTOM_RIGHT,
 }
 
-export const LOCAL_GREETING_KEY = "NEW_TAB_GREETING_N"
+export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
+
+export interface Settings {
+  position: number;
+  showSearch: boolean;
+}
+
+export const DEFAULT_SETTINGS: Settings = {
+  showSearch: true,
+  position: Positions.BOTTOM_RIGHT,
+} as const;

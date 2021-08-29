@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const Search = () => {
+export const Search = ({ focusable }: { focusable: boolean }) => {
   const [search, setSearch] = React.useState("");
   const [focused, setFocused] = React.useState(true);
   const ref = React.useRef<HTMLInputElement>(null);
@@ -11,12 +11,12 @@ export const Search = () => {
 
   const handler = React.useCallback(
     (event: KeyboardEvent) => {
-      if (focused) return;
+      if (focused || !focusable) return;
       ref.current?.focus();
 
       setSearch((p) => p + event.key);
     },
-    [focused],
+    [focused, focusable],
   );
 
   React.useEffect(() => {

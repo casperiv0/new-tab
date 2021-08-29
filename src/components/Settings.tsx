@@ -1,12 +1,12 @@
 import * as React from "react";
 import ReactModal from "react-modal";
-import useLocalStorage from "react-use/lib/useLocalStorage";
 import { classes } from "lib/classes";
-import { LOCAL_GREETING_KEY, Positions } from "lib/constants";
+import { Positions, Settings as ISettings } from "lib/constants";
 
 interface Props {
   open: boolean;
-  onPositionSelect: (newPosition: number) => void;
+  settings: ISettings;
+  onSettingsChange: (settings: ISettings) => void;
   onClose: () => void;
 }
 
@@ -21,6 +21,7 @@ const styles: ReactModal.Styles = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    animation: "modalAnimation 200ms",
   },
   overlay: {
     background: "rgba(0,0,0,0.7)",
@@ -28,24 +29,27 @@ const styles: ReactModal.Styles = {
 };
 
 ReactModal.setAppElement("#__next");
-export const Settings = ({ open, onClose, onPositionSelect }: Props) => {
+export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) => {
   const [greetingPos, setGreetingPos] = React.useState(Positions.BOTTOM_RIGHT);
-  const [value, updateLocal] = useLocalStorage(LOCAL_GREETING_KEY, Positions.BOTTOM_RIGHT);
+  const [showSearch, setSearch] = React.useState(true);
 
   React.useEffect(() => {
-    if (typeof value !== "undefined") {
-      setGreetingPos(value);
-    }
-  }, [value]);
+    setGreetingPos(settings.position);
+    setSearch(settings.showSearch);
+  }, [settings]);
 
-  function isActive(n: number) {
+  function isGreetingActive(n: number) {
     return greetingPos === n ? "selected" : "";
+  }
+
+  function onSearchClick(b: boolean) {
+    setSearch(b);
+    onSettingsChange({ ...settings, showSearch: b });
   }
 
   function onClick(n: number) {
     setGreetingPos(n);
-    updateLocal(n);
-    onPositionSelect(n);
+    onSettingsChange({ ...settings, position: n });
   }
 
   function onSubmit(e: React.FormEvent) {
@@ -62,28 +66,47 @@ export const Settings = ({ open, onClose, onPositionSelect }: Props) => {
           <div style={{ gap: "0.5em", display: "flex" }}>
             <button
               onClick={() => onClick(Positions.TOP_LEFT)}
-              className={classes("positionBtn", isActive(Positions.TOP_LEFT))}
+              className={classes("positionBtn", isGreetingActive(Positions.TOP_LEFT))}
             >
               Top left
             </button>
             <button
               onClick={() => onClick(Positions.TOP_RIGHT)}
-              className={classes("positionBtn", isActive(Positions.TOP_RIGHT))}
+              className={classes("positionBtn", isGreetingActive(Positions.TOP_RIGHT))}
             >
               Top right
             </button>
             <button
               onClick={() => onClick(Positions.BOTTOM_LEFT)}
-              className={classes("positionBtn", isActive(Positions.BOTTOM_LEFT))}
+              className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_LEFT))}
             >
               Bottom Left
             </button>
             <button
               onClick={() => onClick(Positions.BOTTOM_RIGHT)}
-              className={classes("positionBtn", isActive(Positions.BOTTOM_RIGHT))}
+              className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_RIGHT))}
             >
               Bottom right
             </button>
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="show-search">Show search</label>
+
+            <div style={{ display: "flex" }}>
+              <button
+                onClick={() => onSearchClick(!showSearch)}
+                className={classes("positionBtn", "toggle", showSearch === true && "selected")}
+              >
+                On
+              </button>
+              <button
+                onClick={() => onSearchClick(!showSearch)}
+                className={classes("positionBtn", "toggle", showSearch === false && "selected")}
+              >
+                Off
+              </button>
+            </div>
           </div>
         </div>
       </form>

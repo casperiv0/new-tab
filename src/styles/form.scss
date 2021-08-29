@@ -22,4 +22,21 @@
     opacity: 0.8;
     cursor: not-allowed;
   }
+
+  &.toggle {
+    border-radius: 0;
+
+    width: 100px !important;
+    margin-left: -1.5px;
+
+    &:first-child {
+      border-top-left-radius: 0.3em;
+      border-bottom-left-radius: 0.3em;
+    }
+
+    &:last-child {
+      border-top-right-radius: 0.3em;
+      border-bottom-right-radius: 0.3em;
+    }
+  }
 }

@@ -5,7 +5,13 @@ import useLocalStorage from "react-use/lib/useLocalStorage";
 import { getGreeting } from "lib/greeting";
 import { getTime } from "lib/time";
 import { Settings } from "components/Settings";
-import { POSITION_CLASSES, Positions, LOCAL_GREETING_KEY } from "lib/constants";
+import {
+  POSITION_CLASSES,
+  Positions,
+  LOCAL_GREETING_KEY,
+  Settings as ISettings,
+  DEFAULT_SETTINGS,
+} from "lib/constants";
 import { Search } from "components/Search";
 
 export default function Index() {
@@ -13,26 +19,31 @@ export default function Index() {
   const [greeting, setGreeting] = React.useState(getGreeting());
   const [time, setTime] = React.useState(getTime());
 
-  const [position, setPosition] = React.useState(Positions.BOTTOM_RIGHT);
-  const [rawPosition] = useLocalStorage(LOCAL_GREETING_KEY, Positions.BOTTOM_RIGHT);
-
-  const positionStyle = {
-    [position === Positions.TOP_LEFT ? "right" : "left"]: "1rem",
-  };
+  const [rawSettings] = useLocalStorage<ISettings>(LOCAL_GREETING_KEY, DEFAULT_SETTINGS);
+  const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
     setGreeting(getGreeting());
 
-    if (typeof rawPosition !== "undefined") {
-      setPosition(rawPosition);
+    if (rawSettings) {
+      setSettings(rawSettings);
     }
 
     const interval = setInterval(() => {
       setTime(getTime());
-    }, 5_000);
+    }, 1_000);
 
     return () => clearInterval(interval);
-  }, [rawPosition]);
+  }, [rawSettings]);
+
+  function saveSettings(s: ISettings) {
+    setSettings(s);
+    localStorage.setItem(LOCAL_GREETING_KEY, JSON.stringify({ ...s }));
+  }
+
+  const positionStyle = {
+    [settings.position === Positions.TOP_LEFT ? "right" : "left"]: "1rem",
+  };
 
   return (
     <>
@@ -45,7 +56,7 @@ export default function Index() {
           <Gear fill="#ffffff" width="20px" height="20px" />
         </button>
 
-        <div className={`${POSITION_CLASSES[position]}Container`}>
+        <div className={`${POSITION_CLASSES[settings.position]}Container`}>
           <h1 className="greetingText">{greeting}</h1>
           <h2 className="timeText">
             {time.dayName} • {time.formattedTime}
@@ -54,12 +65,13 @@ export default function Index() {
 
         <Settings
           open={open}
-          onPositionSelect={(p) => setPosition(p)}
+          onSettingsChange={saveSettings}
+          settings={settings}
           onClose={() => {
             setOpen(false);
           }}
         />
-        <Search />
+        {settings.showSearch && <Search focusable={!open} />}
       </>
     </>
   );
