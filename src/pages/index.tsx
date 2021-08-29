@@ -71,7 +71,7 @@ export default function Index() {
             setOpen(false);
           }}
         />
-        {settings.showSearch && <Search focusable={!open} />}
+        {settings.showSearch && <Search settings={settings} focusable={!open} />}
       </>
     </>
   );

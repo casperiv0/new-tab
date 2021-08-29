@@ -32,10 +32,12 @@ ReactModal.setAppElement("#__next");
 export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) => {
   const [greetingPos, setGreetingPos] = React.useState(Positions.BOTTOM_RIGHT);
   const [showSearch, setSearch] = React.useState(true);
+  const [searchEngine, setSearchEngine] = React.useState("");
 
   React.useEffect(() => {
     setGreetingPos(settings.position);
     setSearch(settings.showSearch);
+    setSearchEngine(settings.searchEngine ?? "");
   }, [settings]);
 
   function isGreetingActive(n: number) {
@@ -52,64 +54,79 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
     onSettingsChange({ ...settings, position: n });
   }
 
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function onSearchEngine() {
+    onSettingsChange({ ...settings, searchEngine });
   }
 
   return (
     <ReactModal style={styles} isOpen={open} onRequestClose={() => onClose()}>
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Settings</h1>
 
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="greeting-position">Greeting Position</label>
-          <div style={{ gap: "0.5em", display: "flex" }}>
-            <button
-              onClick={() => onClick(Positions.TOP_LEFT)}
-              className={classes("positionBtn", isGreetingActive(Positions.TOP_LEFT))}
-            >
-              Top left
-            </button>
-            <button
-              onClick={() => onClick(Positions.TOP_RIGHT)}
-              className={classes("positionBtn", isGreetingActive(Positions.TOP_RIGHT))}
-            >
-              Top right
-            </button>
-            <button
-              onClick={() => onClick(Positions.BOTTOM_LEFT)}
-              className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_LEFT))}
-            >
-              Bottom Left
-            </button>
-            <button
-              onClick={() => onClick(Positions.BOTTOM_RIGHT)}
-              className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_RIGHT))}
-            >
-              Bottom right
-            </button>
-          </div>
+      <div>
+        <label htmlFor="greeting-position">Greeting Position</label>
+        <div style={{ gap: "0.5em", display: "flex" }}>
+          <button
+            onClick={() => onClick(Positions.TOP_LEFT)}
+            className={classes("positionBtn", isGreetingActive(Positions.TOP_LEFT))}
+          >
+            Top left
+          </button>
+          <button
+            onClick={() => onClick(Positions.TOP_RIGHT)}
+            className={classes("positionBtn", isGreetingActive(Positions.TOP_RIGHT))}
+          >
+            Top right
+          </button>
+          <button
+            onClick={() => onClick(Positions.BOTTOM_LEFT)}
+            className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_LEFT))}
+          >
+            Bottom Left
+          </button>
+          <button
+            onClick={() => onClick(Positions.BOTTOM_RIGHT)}
+            className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_RIGHT))}
+          >
+            Bottom right
+          </button>
+        </div>
 
-          <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="show-search">Search</label>
+        <div style={{ marginTop: "1rem" }}>
+          <label htmlFor="show-search">Search</label>
 
-            <div style={{ display: "flex" }}>
-              <button
-                onClick={() => onSearchClick(!showSearch)}
-                className={classes("positionBtn", "toggle", showSearch === true && "selected")}
-              >
-                On
-              </button>
-              <button
-                onClick={() => onSearchClick(!showSearch)}
-                className={classes("positionBtn", "toggle", showSearch === false && "selected")}
-              >
-                Off
-              </button>
-            </div>
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => onSearchClick(!showSearch)}
+              className={classes("positionBtn", "toggle", showSearch === true && "selected")}
+            >
+              On
+            </button>
+            <button
+              onClick={() => onSearchClick(!showSearch)}
+              className={classes("positionBtn", "toggle", showSearch === false && "selected")}
+            >
+              Off
+            </button>
           </div>
         </div>
-      </form>
+
+        <div style={{ marginTop: "1rem" }}>
+          <label htmlFor="search-engine">Search engine (Not recommended changing.)</label>
+
+          <div style={{ display: "flex" }}>
+            <input
+              type="url"
+              id="search-engine"
+              placeholder="https://duckduckgo.com"
+              className="formInput"
+              onChange={(e) => setSearchEngine(e.target.value)}
+              disabled={!showSearch}
+              value={searchEngine}
+              onBlur={onSearchEngine}
+            />
+          </div>
+        </div>
+      </div>
     </ReactModal>
   );
 };

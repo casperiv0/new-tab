@@ -12,9 +12,11 @@ export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
 export interface Settings {
   position: number;
   showSearch: boolean;
+  searchEngine: string;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   showSearch: false,
   position: Positions.BOTTOM_RIGHT,
+  searchEngine: "https://duckduckgo.com",
 } as const;
