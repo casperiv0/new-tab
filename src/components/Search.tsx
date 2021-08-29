@@ -22,10 +22,10 @@ export const Search = ({ focusable }: { focusable: boolean }) => {
   );
 
   React.useEffect(() => {
-    window.addEventListener("keyup", handler);
+    window.addEventListener("keypress", handler);
 
     return () => {
-      window.removeEventListener("keyup", handler);
+      window.removeEventListener("keypress", handler);
     };
   }, [handler]);
 

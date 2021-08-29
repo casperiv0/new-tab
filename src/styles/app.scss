@@ -20,8 +20,8 @@
 
 .topLeftContainer {
   position: fixed;
-  top: 2rem;
-  left: 2rem;
+  top: 3rem;
+  left: 3rem;
 
   h1,
   h2 {
@@ -31,20 +31,20 @@
 
 .topRightContainer {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 3rem;
+  right: 3rem;
 }
 
 .bottomRightContainer {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 3rem;
+  right: 3rem;
 }
 
 .bottomLeftContainer {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 3rem;
+  left: 3rem;
 
   h1,
   h2 {
@@ -62,4 +62,8 @@
 .timeText {
   font-size: 3em;
   text-align: end;
+
+  span {
+    font-size: 0.8em;
+  }
 }

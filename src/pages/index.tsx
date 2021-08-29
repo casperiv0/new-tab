@@ -59,7 +59,7 @@ export default function Index() {
         <div className={`${POSITION_CLASSES[settings.position]}Container`}>
           <h1 className="greetingText">{greeting}</h1>
           <h2 className="timeText">
-            {time.dayName} • {time.formattedTime}
+            {time.dayName} <span>•</span> {time.formattedTime}
           </h2>
         </div>
 
