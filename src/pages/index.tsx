@@ -6,6 +6,7 @@ import { getGreeting } from "lib/greeting";
 import { getTime } from "lib/time";
 import { Settings } from "components/Settings";
 import { POSITION_CLASSES, Positions, LOCAL_GREETING_KEY } from "lib/constants";
+import { Search } from "components/Search";
 
 export default function Index() {
   const [open, setOpen] = React.useState(false);
@@ -58,6 +59,7 @@ export default function Index() {
             setOpen(false);
           }}
         />
+        <Search />
       </>
     </>
   );
