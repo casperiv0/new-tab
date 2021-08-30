@@ -2,3 +2,4 @@ node_modules
 out
 .next
 next-env.d.ts
+extension/html

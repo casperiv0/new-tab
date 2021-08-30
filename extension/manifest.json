@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "new-tab",
+  "version": "0.1.0",
+  "author": "Dev-CasperTheGhost",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "description": "Simple looking new-tab with search and greeting."
+}

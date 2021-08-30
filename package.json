@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build && next export",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
-    "lint": "eslint . --ext .ts,.js,.tsx,.jsx"
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "extension": "next build && next export -o extension/html && cp extension/manifest.json extension/html/manifest.json",
+    "dev:pkg": "yarn extension && web-ext run && rm -rf extension/html",
+    "pkg": "yarn extension && web-ext build --overwrite-dest && rm -rf extension/html"
   },
   "dependencies": {
     "is-url": "^1.2.4",
@@ -29,6 +32,14 @@
     "preact": "^10.5.14",
     "prettier": "^2.3.2",
     "sass": "^1.38.2",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "web-ext": "^6.3.0"
+  },
+  "webExt": {
+    "sourceDir": "extension/html",
+    "ignoreFiles": [
+      "package.json",
+      "package-lock.json"
+    ]
   }
 }
