@@ -1,11 +1,11 @@
 .positionBtn {
   background: none;
-  border: 1.5px solid gray;
+  border: 1.5px solid var(--secondary);
   width: 100%;
 
   margin-top: 0.8em;
 
-  color: #ffffff;
+  color: var(--secondary);
   padding: 0.5em;
   border-radius: 0.3em;
   cursor: pointer;
@@ -14,8 +14,8 @@
 
   &:hover:enabled,
   &.selected {
-    color: #000;
-    background: #ffffff;
+    color: var(--primary);
+    background: var(--secondary);
   }
 
   &:disabled {
@@ -27,7 +27,7 @@
     border-radius: 0;
 
     width: 100px !important;
-    margin-left: -1.5px;
+    margin-left: 1px;
 
     &:first-child {
       border-top-left-radius: 0.3em;
@@ -48,11 +48,11 @@
   padding: 0.5em 0.8em;
 
   font-size: 1rem;
-  color: #ffffff;
+  color: var(--secondary);
 
-  border: 1.5px solid #ffffff;
+  border: 1.5px solid var(--secondary);
   border-radius: 0.3em;
-  background: #000;
+  background: var(--primary);
 
   transition: 200ms;
 

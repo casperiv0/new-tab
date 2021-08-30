@@ -13,11 +13,11 @@ export const Search = ({ focusable, settings }: Props) => {
   const [focused, setFocused] = React.useState(true);
   const ref = React.useRef<HTMLInputElement>(null);
 
-  const placeholder = new URL(settings.searchEngine || "https://duckduckgo.com").host;
+  const engineUrl = new URL(settings.searchEngine || "https://duckduckgo.com");
 
   React.useEffect(() => {
-    ref.current?.focus();
-  }, []);
+    focusable && ref.current?.focus();
+  }, [focusable]);
 
   const handler = React.useCallback(
     (event: KeyboardEvent) => {
@@ -46,7 +46,7 @@ export const Search = ({ focusable, settings }: Props) => {
       return (window.location.href = url);
     }
 
-    return (window.location.href = `${settings.searchEngine}?q=${encodeURIComponent(search)}`);
+    return (window.location.href = `${engineUrl}?q=${encodeURIComponent(search)}`);
   }
 
   return (
@@ -56,7 +56,7 @@ export const Search = ({ focusable, settings }: Props) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="search"
-        placeholder={`Search via ${placeholder}`}
+        placeholder={`Search via ${engineUrl.host}`}
         className="searchInput"
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}

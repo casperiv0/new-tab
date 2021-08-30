@@ -53,7 +53,7 @@ export default function Index() {
           onClick={() => setOpen(true)}
           className="settingsBtn"
         >
-          <Gear fill="#ffffff" width="20px" height="20px" />
+          <Gear fill="var(--secondary)" width="20px" height="20px" />
         </button>
 
         <div className={`${POSITION_CLASSES[settings.position]}Container`}>

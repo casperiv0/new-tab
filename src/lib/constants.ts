@@ -9,14 +9,17 @@ export enum Positions {
 
 export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
 
+export type Theme = "dark" | "light";
 export interface Settings {
   position: number;
   showSearch: boolean;
   searchEngine: string;
+  theme: Theme;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   showSearch: false,
   position: Positions.BOTTOM_RIGHT,
   searchEngine: "https://duckduckgo.com",
+  theme: "dark",
 } as const;

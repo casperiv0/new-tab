@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactModal from "react-modal";
 import { classes } from "lib/classes";
-import { Positions, Settings as ISettings } from "lib/constants";
+import { Positions, Settings as ISettings, Theme } from "lib/constants";
 
 interface Props {
   open: boolean;
@@ -12,7 +12,7 @@ interface Props {
 
 const styles: ReactModal.Styles = {
   content: {
-    background: "black",
+    background: "var(--primary)",
     width: "32rem",
     maxWidth: "95%",
     height: "max-content",
@@ -33,11 +33,13 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   const [greetingPos, setGreetingPos] = React.useState(Positions.BOTTOM_RIGHT);
   const [showSearch, setSearch] = React.useState(true);
   const [searchEngine, setSearchEngine] = React.useState("");
+  const [theme, setTheme] = React.useState<Theme>("dark");
 
   React.useEffect(() => {
     setGreetingPos(settings.position);
     setSearch(settings.showSearch);
     setSearchEngine(settings.searchEngine ?? "");
+    setTheme(settings.theme);
   }, [settings]);
 
   function isGreetingActive(n: number) {
@@ -47,6 +49,14 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   function onSearchClick(b: boolean) {
     setSearch(b);
     onSettingsChange({ ...settings, showSearch: b });
+  }
+
+  function handleThemeChange(t: Theme) {
+    document.body.classList.remove(theme);
+    document.body.classList.add(t);
+
+    setTheme(t);
+    onSettingsChange({ ...settings, theme: t });
   }
 
   function onClick(n: number) {
@@ -89,6 +99,25 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
           >
             Bottom right
           </button>
+        </div>
+
+        <div style={{ marginTop: "1rem" }}>
+          <label htmlFor="show-search">Theme</label>
+
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => handleThemeChange("dark")}
+              className={classes("positionBtn", "toggle", theme === "dark" && "selected")}
+            >
+              Dark
+            </button>
+            <button
+              onClick={() => handleThemeChange("light")}
+              className={classes("positionBtn", "toggle", theme === "light" && "selected")}
+            >
+              Light
+            </button>
+          </div>
         </div>
 
         <div style={{ marginTop: "1rem" }}>
