@@ -1,10 +1,10 @@
-enum Greeting {
+export enum Greeting {
   MORNING = "Good morning.",
   AFTERNOON = "Good afternoon.",
   EVENING = "Good evening.",
 }
 
-export function getGreeting(): Greeting {
+export function getGreeting() {
   const hours = new Date().getHours();
 
   if (hours >= 12 && hours < 18) {

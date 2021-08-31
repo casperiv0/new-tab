@@ -1,7 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
-import { getGreeting } from "lib/greeting";
 import { getTime } from "lib/time";
 import { Settings } from "components/Settings";
 import {
@@ -15,14 +14,15 @@ import { getLocalSettings, saveLocalSettings } from "lib/settings";
 
 export default function Index() {
   const [open, setOpen] = React.useState(false);
-  const [greeting, setGreeting] = React.useState(getGreeting());
   const [time, setTime] = React.useState(getTime());
 
   const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
 
   React.useEffect(() => {
-    setGreeting(getGreeting());
-    setSettings(getLocalSettings());
+    const s = getLocalSettings();
+
+    setSettings(s);
+    document.body.classList.add(s.theme);
 
     const interval = setInterval(() => {
       setTime(getTime());
@@ -57,7 +57,7 @@ export default function Index() {
         </button>
 
         <div className={`${POSITION_CLASSES[settings.position]}Container`}>
-          <h1 className="greetingText">{greeting}</h1>
+          <h1 className="greetingText">{time.greeting}</h1>
           <h2 className="timeText">
             {time.dayName} <span>•</span> {time.formattedTime}
           </h2>

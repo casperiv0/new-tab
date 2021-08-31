@@ -125,13 +125,13 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
 
           <div style={{ display: "flex" }}>
             <button
-              onClick={() => onSearchClick(!showSearch)}
+              onClick={() => onSearchClick(true)}
               className={classes("positionBtn", "toggle", showSearch === true && "selected")}
             >
               On
             </button>
             <button
-              onClick={() => onSearchClick(!showSearch)}
+              onClick={() => onSearchClick(false)}
               className={classes("positionBtn", "toggle", showSearch === false && "selected")}
             >
               Off
