@@ -78,6 +78,7 @@
   padding: 1rem;
   border-radius: 0.45rem;
   overflow: hidden;
+  border: 1.5px solid var(--secondary);
 
   @media (max-height: 850px) {
     overflow-y: scroll;
