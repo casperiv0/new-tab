@@ -104,7 +104,12 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   }
 
   return (
-    <ReactModal style={styles} isOpen={open} onRequestClose={() => onClose()}>
+    <ReactModal
+      className="modalResponsive"
+      style={styles}
+      isOpen={open}
+      onRequestClose={() => onClose()}
+    >
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Settings</h1>
 
       <div>

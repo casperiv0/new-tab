@@ -73,3 +73,15 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+
+.modalResponsive {
+  padding: 1rem;
+  border-radius: 0.45rem;
+  overflow: hidden;
+
+  @media (max-height: 850px) {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    height: 95% !important;
+  }
+}
