@@ -1,7 +1,7 @@
 import * as React from "react";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
-import { Settings } from "lib/constants";
+import type { Settings } from "types/Settings";
 
 interface Props {
   focusable: boolean;
@@ -13,7 +13,7 @@ export const Search = ({ focusable, settings }: Props) => {
   const [focused, setFocused] = React.useState(true);
   const ref = React.useRef<HTMLInputElement>(null);
 
-  const engineUrl = new URL(settings.searchEngine || "https://duckduckgo.com");
+  const engineUrl = new URL(settings.search.engine || "https://duckduckgo.com");
 
   React.useEffect(() => {
     focusable && ref.current?.focus();
