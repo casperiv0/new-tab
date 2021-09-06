@@ -20,9 +20,9 @@ export default function Index() {
   React.useEffect(() => {
     let interval: NodeJS.Timer;
 
-    if (settings.weather.show) {
+    if (settings.weather.show && settings.weather.location) {
       // get the weather when settings.weather changes
-      getWeather(settings.weather.location!, "metric")
+      getWeather(settings.weather.location, "metric")
         .then(setWeather)
         .catch(() => setWeather(null));
 
@@ -31,6 +31,8 @@ export default function Index() {
         getWeather(settings.weather.location!, "metric")
           .then(setWeather)
           .catch(() => setWeather(null));
+
+        // refresh weather every 30 minutes
       }, 60 * 30 * 1000);
     }
 

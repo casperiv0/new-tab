@@ -98,6 +98,8 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   }
 
   function onWeatherLocation() {
+    if (weatherLocation === settings.weather.location) return;
+
     onSettingsChange({ ...settings, weather: { ...settings.weather, location: weatherLocation } });
   }
 
