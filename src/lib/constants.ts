@@ -1,8 +1,9 @@
-export const POSITION_CLASSES = ["topLeft", "topRight", "bottomLeft", "bottomRight"] as const;
+import { Settings } from "src/types/Settings";
+
+export const POSITION_CLASSES = ["topRight", "bottomLeft", "bottomRight"] as const;
 
 export enum Positions {
-  TOP_LEFT = 0,
-  TOP_RIGHT,
+  TOP_RIGHT = 0,
   BOTTOM_LEFT,
   BOTTOM_RIGHT,
 }
@@ -10,16 +11,23 @@ export enum Positions {
 export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
 
 export type Theme = "dark" | "light";
-export interface Settings {
-  position: number;
-  showSearch: boolean;
-  searchEngine: string;
-  theme: Theme;
-}
 
 export const DEFAULT_SETTINGS: Settings = {
-  showSearch: false,
-  position: Positions.BOTTOM_RIGHT,
-  searchEngine: "https://duckduckgo.com",
   theme: "dark",
+  search: {
+    show: false,
+    engine: "https://duckduckgo.com",
+  },
+  weather: {
+    show: false,
+    location: null,
+  },
+  positions: {
+    greeting: Positions.BOTTOM_RIGHT,
+    weather: Positions.BOTTOM_LEFT,
+  },
+
+  position: undefined,
+  searchEngine: undefined,
+  showSearch: undefined,
 } as const;

@@ -1,6 +1,7 @@
 .settingsBtn {
   position: fixed;
   top: 1rem;
+  left: 1rem;
 
   display: grid;
   place-items: center;
@@ -66,4 +67,9 @@
   span {
     font-size: 0.8em;
   }
+}
+
+.weatherText {
+  font-size: 1.5rem;
+  font-weight: 600;
 }

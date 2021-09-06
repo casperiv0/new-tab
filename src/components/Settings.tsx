@@ -1,7 +1,8 @@
 import * as React from "react";
 import ReactModal from "react-modal";
+import type { Settings as ISettings } from "types/Settings";
 import { classes } from "lib/classes";
-import { Positions, Settings as ISettings, Theme } from "lib/constants";
+import { Positions, Theme } from "lib/constants";
 
 interface Props {
   open: boolean;
@@ -13,7 +14,7 @@ interface Props {
 const styles: ReactModal.Styles = {
   content: {
     background: "var(--primary)",
-    width: "32rem",
+    width: "40rem",
     maxWidth: "95%",
     height: "max-content",
 
@@ -35,20 +36,43 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   const [searchEngine, setSearchEngine] = React.useState("");
   const [theme, setTheme] = React.useState<Theme>("dark");
 
+  const [weatherPos, setWeatherPos] = React.useState(Positions.BOTTOM_LEFT);
+  const [weatherLocation, setWeatherLocation] = React.useState("");
+  const [showWeather, setShowWeather] = React.useState(false);
+
+  const isGreetingActive = (n: number) => (greetingPos === n ? "selected" : "");
+  const isWeatherActive = (n: number) => (weatherPos === n ? "selected" : "");
+
   React.useEffect(() => {
-    setGreetingPos(settings.position);
-    setSearch(settings.showSearch);
-    setSearchEngine(settings.searchEngine ?? "");
+    if (settings.positions) {
+      setGreetingPos(settings.positions.greeting);
+      setWeatherPos(settings.positions.weather);
+    }
+
+    if (settings.search) {
+      setSearch(settings.search.show);
+      setSearchEngine(settings.search.engine);
+    } else {
+      setSearch(false);
+      setSearchEngine("https://duckduckgo.com");
+    }
+
+    if (settings.weather && settings.weather.show) {
+      setShowWeather(settings.weather.show);
+      setWeatherLocation(settings.weather.location ?? "");
+    }
+
     setTheme(settings.theme);
   }, [settings]);
 
-  function isGreetingActive(n: number) {
-    return greetingPos === n ? "selected" : "";
+  function onSearchClick(v: boolean) {
+    setSearch(v);
+    onSettingsChange({ ...settings, search: { ...settings.search, show: v } });
   }
 
-  function onSearchClick(b: boolean) {
-    setSearch(b);
-    onSettingsChange({ ...settings, showSearch: b });
+  function onWeatherClick(v: boolean) {
+    setShowWeather(v);
+    onSettingsChange({ ...settings, weather: { ...settings.weather, show: v } });
   }
 
   function handleThemeChange(t: Theme) {
@@ -59,13 +83,22 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
     onSettingsChange({ ...settings, theme: t });
   }
 
-  function onClick(n: number) {
+  function onGreetingClick(n: number) {
     setGreetingPos(n);
-    onSettingsChange({ ...settings, position: n });
+    onSettingsChange({ ...settings, positions: { ...settings.positions, greeting: n } });
+  }
+
+  function onWeatherPosClick(n: number) {
+    setWeatherPos(n);
+    onSettingsChange({ ...settings, positions: { ...settings.positions, weather: n } });
   }
 
   function onSearchEngine() {
-    onSettingsChange({ ...settings, searchEngine });
+    onSettingsChange({ ...settings, search: { ...settings.search, engine: searchEngine } });
+  }
+
+  function onWeatherLocation() {
+    onSettingsChange({ ...settings, weather: { ...settings.weather, location: weatherLocation } });
   }
 
   return (
@@ -73,35 +106,18 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Settings</h1>
 
       <div>
-        <label htmlFor="greeting-position">Greeting Position</label>
-        <div style={{ gap: "0.5em", display: "flex" }}>
-          <button
-            onClick={() => onClick(Positions.TOP_LEFT)}
-            className={classes("positionBtn", isGreetingActive(Positions.TOP_LEFT))}
-          >
-            Top left
-          </button>
-          <button
-            onClick={() => onClick(Positions.TOP_RIGHT)}
-            className={classes("positionBtn", isGreetingActive(Positions.TOP_RIGHT))}
-          >
-            Top right
-          </button>
-          <button
-            onClick={() => onClick(Positions.BOTTOM_LEFT)}
-            className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_LEFT))}
-          >
-            Bottom Left
-          </button>
-          <button
-            onClick={() => onClick(Positions.BOTTOM_RIGHT)}
-            className={classes("positionBtn", isGreetingActive(Positions.BOTTOM_RIGHT))}
-          >
-            Bottom right
-          </button>
+        <div>
+          <h3 style={{ marginBottom: "0.5rem" }}>Greeting</h3>
+          <label htmlFor="greeting-position">Greeting Position</label>
+          <PositionButtons
+            disabled={weatherPos}
+            onClick={onGreetingClick}
+            isActive={isGreetingActive}
+          />
         </div>
 
         <div style={{ marginTop: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>Themes</h3>
           <label htmlFor="show-search">Theme</label>
 
           <div style={{ display: "flex" }}>
@@ -121,7 +137,8 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
         </div>
 
         <div style={{ marginTop: "1rem" }}>
-          <label htmlFor="show-search">Search</label>
+          <h3 style={{ marginBottom: "0.5rem" }}>Search</h3>
+          <label htmlFor="show-search">Search enabled</label>
 
           <div style={{ display: "flex" }}>
             <button
@@ -137,12 +154,10 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
               Off
             </button>
           </div>
-        </div>
 
-        <div style={{ marginTop: "1rem" }}>
-          <label htmlFor="search-engine">Search engine (Not recommended changing.)</label>
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="search-engine">Search engine (Not recommended changing.)</label>
 
-          <div style={{ display: "flex" }}>
             <input
               type="url"
               id="search-engine"
@@ -155,7 +170,84 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
             />
           </div>
         </div>
+
+        <div style={{ marginTop: "1rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>Weather</h3>
+          <label htmlFor="show-search">Weather enabled</label>
+
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => onWeatherClick(true)}
+              className={classes("positionBtn", "toggle", showWeather === true && "selected")}
+            >
+              On
+            </button>
+            <button
+              onClick={() => onWeatherClick(false)}
+              className={classes("positionBtn", "toggle", showWeather === false && "selected")}
+            >
+              Off
+            </button>
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="weather-position">Weather Position</label>
+            <PositionButtons
+              disabled={greetingPos}
+              onClick={onWeatherPosClick}
+              isActive={isWeatherActive}
+            />
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="weather-location">Location</label>
+            <input
+              type="url"
+              id="weather-location"
+              placeholder="London"
+              className="formInput"
+              onChange={(e) => setWeatherLocation(e.target.value)}
+              disabled={!showWeather}
+              value={weatherLocation}
+              onBlur={onWeatherLocation}
+            />
+          </div>
+        </div>
       </div>
     </ReactModal>
   );
 };
+
+interface PositionProps {
+  disabled: number;
+  onClick: (n: number) => void;
+  isActive: (n: number) => string;
+}
+
+function PositionButtons({ disabled, onClick, isActive }: PositionProps) {
+  return (
+    <div style={{ gap: "0.5em", display: "flex" }}>
+      <button
+        disabled={Positions.TOP_RIGHT === disabled}
+        onClick={() => onClick(Positions.TOP_RIGHT)}
+        className={classes("positionBtn", isActive(Positions.TOP_RIGHT))}
+      >
+        Top right
+      </button>
+      <button
+        disabled={Positions.BOTTOM_LEFT === disabled}
+        onClick={() => onClick(Positions.BOTTOM_LEFT)}
+        className={classes("positionBtn", isActive(Positions.BOTTOM_LEFT))}
+      >
+        Bottom Left
+      </button>
+      <button
+        disabled={Positions.BOTTOM_RIGHT === disabled}
+        onClick={() => onClick(Positions.BOTTOM_RIGHT)}
+        className={classes("positionBtn", isActive(Positions.BOTTOM_RIGHT))}
+      >
+        Bottom right
+      </button>
+    </div>
+  );
+}

@@ -1,22 +1,43 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
+import type { Weather } from "types/Weather";
+import type { Settings as ISettings } from "types/Settings";
 import { getTime } from "lib/time";
 import { Settings } from "components/Settings";
-import {
-  POSITION_CLASSES,
-  Positions,
-  Settings as ISettings,
-  DEFAULT_SETTINGS,
-} from "lib/constants";
+import { POSITION_CLASSES, DEFAULT_SETTINGS } from "lib/constants";
 import { Search } from "components/Search";
 import { getLocalSettings, saveLocalSettings } from "lib/settings";
+import { getWeather } from "lib/weather";
 
 export default function Index() {
   const [open, setOpen] = React.useState(false);
   const [time, setTime] = React.useState(getTime());
 
   const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
+  const [weather, setWeather] = React.useState<Weather | null>(null);
+
+  React.useEffect(() => {
+    let interval: NodeJS.Timer;
+
+    if (settings.weather.show) {
+      // get the weather when settings.weather changes
+      getWeather(settings.weather.location!, "metric")
+        .then(setWeather)
+        .catch(() => setWeather(null));
+
+      // set a new interval when settings.weather changes
+      interval = setInterval(() => {
+        getWeather(settings.weather.location!, "metric")
+          .then(setWeather)
+          .catch(() => setWeather(null));
+      }, 60 * 30 * 1000);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [settings.weather]);
 
   React.useEffect(() => {
     const s = getLocalSettings();
@@ -36,10 +57,6 @@ export default function Index() {
     saveLocalSettings(s);
   }
 
-  const positionStyle = {
-    [settings.position === Positions.TOP_LEFT ? "right" : "left"]: "1rem",
-  };
-
   return (
     <>
       <Head>
@@ -47,21 +64,25 @@ export default function Index() {
       </Head>
 
       <>
-        <button
-          aria-label="Enter settings"
-          style={positionStyle}
-          onClick={() => setOpen(true)}
-          className="settingsBtn"
-        >
+        <button aria-label="Enter settings" onClick={() => setOpen(true)} className="settingsBtn">
           <Gear fill="var(--secondary)" width="20px" height="20px" />
         </button>
 
-        <div className={`${POSITION_CLASSES[settings.position]}Container`}>
+        <div className={`${POSITION_CLASSES[settings.positions.greeting]}Container`}>
           <h1 className="greetingText">{time.greeting}</h1>
           <h2 className="timeText">
             {time.dayName} <span>•</span> {time.formattedTime}
           </h2>
         </div>
+
+        {settings.weather.show && weather ? (
+          <div
+            title={weather.weather[0]?.description!}
+            className={`${POSITION_CLASSES[settings.positions.weather]}Container`}
+          >
+            <p className="weatherText">{weather.main.temp.toFixed(0)}°C</p>
+          </div>
+        ) : null}
 
         <Settings
           open={open}
@@ -71,7 +92,7 @@ export default function Index() {
             setOpen(false);
           }}
         />
-        {settings.showSearch && <Search settings={settings} focusable={!open} />}
+        {settings.search.show && <Search settings={settings} focusable={!open} />}
       </>
     </>
   );

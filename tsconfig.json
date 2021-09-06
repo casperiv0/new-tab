@@ -33,7 +33,8 @@
     "paths": {
       "lib/*": ["./src/lib/*"],
       "components/*": ["./src/components/*"],
-      "styles/*": ["./src/styles/*"]
+      "styles/*": ["./src/styles/*"],
+      "types/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
