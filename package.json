@@ -8,8 +8,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json}\" --ignore-path .gitignore",
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "extension": "next build && next export -o extension/html && cp extension/manifest.json extension/html/manifest.json",
-    "dev:pkg": "yarn extension && web-ext run && rm -rf extension/html",
-    "pkg": "yarn extension && web-ext build --overwrite-dest && rm -rf extension/html"
+    "dev:pkg": "npm run extension && web-ext run && rm -rf extension/html",
+    "pkg": "npm run extension && web-ext build --overwrite-dest"
   },
   "dependencies": {
     "@casper124578/useful": "^1.3.2",
