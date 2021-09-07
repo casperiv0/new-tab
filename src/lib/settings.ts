@@ -21,6 +21,13 @@ export function getLocalSettings() {
     };
   }
 
+  if (!parsed.weather) {
+    parsed.weather = {
+      show: false,
+      location: null,
+    };
+  }
+
   return parsed;
 }
 
