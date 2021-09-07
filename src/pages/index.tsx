@@ -79,12 +79,13 @@ export default function Index() {
           </h2>
         </div>
 
-        {settings.weather.show && weather ? (
+        {settings.weather.show ? (
           <div
-            title={weather.weather[0]?.description!}
+            style={{ opacity: weather ? 1 : 0, transition: "200ms" }}
+            title={weather?.weather[0]?.description!}
             className={`${POSITION_CLASSES[settings.positions.weather]}Container`}
           >
-            <p className="weatherText">{weather.main.temp.toFixed(0)}°C</p>
+            <p className="weatherText">{weather?.main.temp.toFixed(0)}°C</p>
           </div>
         ) : null}
 
