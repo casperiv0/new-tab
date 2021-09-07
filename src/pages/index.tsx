@@ -1,6 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
+import { useTabFocus } from "@casper124578/useful/hooks/useTabFocus";
 import type { Weather } from "types/Weather";
 import type { Settings as ISettings } from "types/Settings";
 import { getTime } from "lib/time";
@@ -11,6 +12,7 @@ import { getLocalSettings, saveLocalSettings } from "lib/settings";
 import { getWeather } from "lib/weather";
 
 export default function Index() {
+  const isFocused = useTabFocus();
   const [open, setOpen] = React.useState(false);
   const [time, setTime] = React.useState(getTime());
 
@@ -20,7 +22,7 @@ export default function Index() {
   React.useEffect(() => {
     let interval: NodeJS.Timer;
 
-    if (settings.weather.show && settings.weather.location) {
+    if (settings.weather.show && settings.weather.location && isFocused) {
       // get the weather when settings.weather changes
       getWeather(settings.weather.location, "metric")
         .then(setWeather)
@@ -39,7 +41,7 @@ export default function Index() {
     return () => {
       clearInterval(interval);
     };
-  }, [settings.weather]);
+  }, [settings.weather, isFocused]);
 
   React.useEffect(() => {
     const s = getLocalSettings();
