@@ -7,3 +7,4 @@ Inspired by <https://github.com/dustinrouillard/tabatha>. This is my âœ¨specialâ
 - Themes (dark/light)
 - Greeting (+ change its position)
 - Search
+- Weather (+ change its position)
