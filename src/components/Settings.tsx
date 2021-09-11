@@ -11,26 +11,9 @@ interface Props {
   onClose: () => void;
 }
 
-const styles: ReactModal.Styles = {
-  content: {
-    background: "var(--primary)",
-    width: "40rem",
-    maxWidth: "95%",
-    height: "max-content",
-
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    animation: "modalAnimation 200ms",
-  },
-  overlay: {
-    background: "rgba(0,0,0,0.7)",
-  },
-};
-
 ReactModal.setAppElement("#__next");
 export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) => {
+  const [animation, setAnimation] = React.useState("modelAnimation");
   const [greetingPos, setGreetingPos] = React.useState(Positions.BOTTOM_RIGHT);
   const [showSearch, setSearch] = React.useState(true);
   const [searchEngine, setSearchEngine] = React.useState("");
@@ -42,6 +25,31 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
 
   const isGreetingActive = (n: number) => (greetingPos === n ? "selected" : "");
   const isWeatherActive = (n: number) => (weatherPos === n ? "selected" : "");
+
+  const styles: ReactModal.Styles = React.useMemo(
+    () => ({
+      content: {
+        background: "var(--primary)",
+        width: "40rem",
+        maxWidth: "95%",
+        height: "max-content",
+
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        animation: `${animation} 200ms`,
+      },
+      overlay: {
+        background: "rgba(0,0,0,0.7)",
+      },
+    }),
+    [animation],
+  );
+
+  React.useEffect(() => {
+    setAnimation("modalAnimation");
+  }, [open]);
 
   React.useEffect(() => {
     if (settings.positions) {
@@ -108,7 +116,13 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
       className="modalResponsive"
       style={styles}
       isOpen={open}
-      onRequestClose={() => onClose()}
+      onRequestClose={() => {
+        setAnimation("closeAnimation");
+
+        setTimeout(() => {
+          onClose();
+        }, 199);
+      }}
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Settings</h1>
 
