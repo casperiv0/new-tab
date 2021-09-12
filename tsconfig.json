@@ -34,7 +34,8 @@
       "lib/*": ["./src/lib/*"],
       "components/*": ["./src/components/*"],
       "styles/*": ["./src/styles/*"],
-      "types/*": ["./src/types/*"]
+      "types/*": ["./src/types/*"],
+      "hooks/*": ["./src/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
