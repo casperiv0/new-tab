@@ -1,8 +1,11 @@
 import { Theme } from "lib/constants";
 
+export const DEFAULT_DATE_FORMAT = "EEEE • HH:mm";
+
 export interface Settings {
   positions: SettingsPositions;
   theme: Theme;
+  date: SettingsDate;
 
   // new stuff
   search: SettingsSearch;
@@ -31,4 +34,8 @@ export interface SettingsSearch {
 export interface SettingsWeather {
   show: boolean;
   location: string | null;
+}
+
+export interface SettingsDate {
+  format: string | null;
 }

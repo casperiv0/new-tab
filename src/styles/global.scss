@@ -25,6 +25,11 @@ body {
   color: var(--secondary);
 }
 
+a {
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
 @keyframes modalAnimation {
   0% {
     opacity: 0;

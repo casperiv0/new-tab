@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactModal from "react-modal";
-import type { Settings as ISettings } from "types/Settings";
+import { DEFAULT_DATE_FORMAT, Settings as ISettings } from "types/Settings";
 import { classes } from "lib/classes";
 import { Positions, Theme } from "lib/constants";
 
@@ -15,6 +15,7 @@ ReactModal.setAppElement("#__next");
 export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) => {
   const [animation, setAnimation] = React.useState("modelAnimation");
   const [greetingPos, setGreetingPos] = React.useState(Positions.BOTTOM_RIGHT);
+  const [dateFormat, setDateFormat] = React.useState(DEFAULT_DATE_FORMAT);
   const [showSearch, setSearch] = React.useState(true);
   const [searchEngine, setSearchEngine] = React.useState("");
   const [theme, setTheme] = React.useState<Theme>("dark");
@@ -70,6 +71,10 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
       setWeatherLocation(settings.weather.location ?? "");
     }
 
+    if (settings.date && settings.date.format) {
+      setDateFormat(settings.date.format);
+    }
+
     setTheme(settings.theme);
   }, [settings]);
 
@@ -111,6 +116,10 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
     onSettingsChange({ ...settings, weather: { ...settings.weather, location: weatherLocation } });
   }
 
+  function onDateFormat() {
+    onSettingsChange({ ...settings, date: { format: dateFormat } });
+  }
+
   return (
     <ReactModal
       className="modalResponsive"
@@ -134,6 +143,25 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
             disabled={weatherPos}
             onClick={onGreetingClick}
             isActive={isGreetingActive}
+          />
+        </div>
+
+        <div style={{ marginTop: "1rem" }}>
+          <label htmlFor="date-format">
+            Date format (
+            <a rel="noopener noreferrer" target="_blank" href="https://date-fns.org/docs/format">
+              read more here
+            </a>
+            )
+          </label>
+          <input
+            type="text"
+            id="date-format"
+            placeholder={DEFAULT_DATE_FORMAT}
+            className="formInput"
+            onChange={(e) => setDateFormat(e.target.value)}
+            value={dateFormat}
+            onBlur={onDateFormat}
           />
         </div>
 

@@ -13,11 +13,12 @@ import { getWeather } from "lib/weather";
 
 export default function Index() {
   const isFocused = useTabFocus();
-  const [open, setOpen] = React.useState(false);
-  const [time, setTime] = React.useState(getTime());
 
   const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
   const [weather, setWeather] = React.useState<Weather | null>(null);
+
+  const [open, setOpen] = React.useState(false);
+  const [time, setTime] = React.useState(getTime(settings.date?.format ?? undefined));
 
   React.useEffect(() => {
     let interval: NodeJS.Timer;
@@ -50,11 +51,11 @@ export default function Index() {
     document.body.classList.add(s.theme);
 
     const interval = setInterval(() => {
-      setTime(getTime());
+      setTime(getTime(settings.date?.format ?? undefined));
     }, 1_000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [settings.date?.format]);
 
   function saveSettings(s: ISettings) {
     setSettings(s);
@@ -74,9 +75,7 @@ export default function Index() {
 
         <div className={`${POSITION_CLASSES[settings.positions.greeting]}Container`}>
           <h1 className="greetingText">{time.greeting}</h1>
-          <h2 className="timeText">
-            {time.dayName} <span>•</span> {time.formattedTime}
-          </h2>
+          <h2 className="timeText">{time.formattedTime}</h2>
         </div>
 
         {settings.weather.show ? (

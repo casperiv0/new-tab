@@ -1,4 +1,4 @@
-import { Settings } from "types/Settings";
+import { DEFAULT_DATE_FORMAT, Settings } from "types/Settings";
 import { DEFAULT_SETTINGS, LOCAL_GREETING_KEY, Positions } from "./constants";
 
 export function getLocalSettings() {
@@ -25,6 +25,12 @@ export function getLocalSettings() {
     parsed.weather = {
       show: false,
       location: null,
+    };
+  }
+
+  if (!parsed.date) {
+    parsed.date = {
+      format: DEFAULT_DATE_FORMAT,
     };
   }
 
