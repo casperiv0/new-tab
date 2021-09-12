@@ -1,7 +1,7 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
-import type { Settings as ISettings } from "types/Settings";
+import { Settings as ISettings, Unit } from "types/Settings";
 import { Settings } from "components/Settings";
 import { POSITION_CLASSES, DEFAULT_SETTINGS } from "lib/constants";
 import { Search } from "components/Search";
@@ -50,7 +50,9 @@ export default function Index() {
             title={weather?.weather[0]?.description!}
             className={`${POSITION_CLASSES[settings.positions.weather]}Container`}
           >
-            <p className="weatherText">{weather?.main.temp.toFixed(0)}°C</p>
+            <p className="weatherText">
+              {weather?.main.temp.toFixed(0)}°{settings.weather.unit === Unit.METRIC ? "C" : "F"}
+            </p>
           </div>
         ) : null}
 

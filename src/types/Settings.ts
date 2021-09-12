@@ -1,6 +1,10 @@
 import { Theme } from "lib/constants";
 
 export const DEFAULT_DATE_FORMAT = "EEEE • HH:mm";
+export enum Unit {
+  METRIC = "metric",
+  IMPERIAL = "imperial",
+}
 
 export interface Settings {
   positions: SettingsPositions;
@@ -34,6 +38,7 @@ export interface SettingsSearch {
 export interface SettingsWeather {
   show: boolean;
   location: string | null;
+  unit: Unit;
 }
 
 export interface SettingsDate {

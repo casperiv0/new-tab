@@ -13,13 +13,13 @@ export function useWeather(weatherSettings: SettingsWeather) {
 
     if (weatherSettings.show && weatherSettings.location && isFocused) {
       // get the weatherSettings when weatherSettings changes
-      getWeather(weatherSettings.location, "metric")
+      getWeather(weatherSettings.location, weatherSettings.unit)
         .then(setWeather)
         .catch(() => setWeather(null));
 
       // set a new interval when weatherSettings changes
       interval = setInterval(() => {
-        getWeather(weatherSettings.location!, "metric")
+        getWeather(weatherSettings.location!, weatherSettings.unit)
           .then(setWeather)
           .catch(() => setWeather(null));
 

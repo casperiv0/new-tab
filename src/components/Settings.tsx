@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactModal from "react-modal";
-import { DEFAULT_DATE_FORMAT, Settings as ISettings } from "types/Settings";
+import { DEFAULT_DATE_FORMAT, Settings as ISettings, Unit } from "types/Settings";
 import { classes } from "lib/classes";
 import { Positions, Theme } from "lib/constants";
 
@@ -23,6 +23,7 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   const [weatherPos, setWeatherPos] = React.useState(Positions.BOTTOM_LEFT);
   const [weatherLocation, setWeatherLocation] = React.useState("");
   const [showWeather, setShowWeather] = React.useState(false);
+  const [unit, setUnit] = React.useState(Unit.METRIC);
 
   const isGreetingActive = (n: number) => (greetingPos === n ? "selected" : "");
   const isWeatherActive = (n: number) => (weatherPos === n ? "selected" : "");
@@ -104,6 +105,11 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
   function onWeatherPosClick(n: number) {
     setWeatherPos(n);
     onSettingsChange({ ...settings, positions: { ...settings.positions, weather: n } });
+  }
+
+  function onUnitClick(unit: Unit) {
+    setUnit(unit);
+    onSettingsChange({ ...settings, weather: { ...settings.weather, unit } });
   }
 
   function onSearchEngine() {
@@ -237,6 +243,25 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
             >
               Off
             </button>
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <label htmlFor="weather-unit">Weather unit</label>
+
+            <div style={{ display: "flex" }}>
+              <button
+                onClick={() => onUnitClick(Unit.METRIC)}
+                className={classes("positionBtn", "toggle", unit === Unit.METRIC && "selected")}
+              >
+                Metric
+              </button>
+              <button
+                onClick={() => onUnitClick(Unit.IMPERIAL)}
+                className={classes("positionBtn", "toggle", unit === Unit.IMPERIAL && "selected")}
+              >
+                Imperial
+              </button>
+            </div>
           </div>
 
           <div style={{ marginTop: "1rem" }}>
