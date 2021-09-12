@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import { DEFAULT_DATE_FORMAT, Settings as ISettings, Unit } from "types/Settings";
 import { classes } from "lib/classes";
 import { Positions, Theme } from "lib/constants";
+import { FormField } from "./FormField";
 
 interface Props {
   open: boolean;
@@ -67,9 +68,10 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
       setSearchEngine("https://duckduckgo.com");
     }
 
-    if (settings.weather && settings.weather.show) {
+    if (settings.weather) {
       setShowWeather(settings.weather.show);
       setWeatherLocation(settings.weather.location ?? "");
+      setUnit(settings.weather.unit);
     }
 
     if (settings.date && settings.date.format) {
@@ -141,40 +143,42 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
     >
       <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>Settings</h1>
 
-      <div>
-        <div>
-          <h3 style={{ marginBottom: "0.5rem" }}>Greeting</h3>
-          <label htmlFor="greeting-position">Greeting Position</label>
-          <PositionButtons
-            disabled={weatherPos}
-            onClick={onGreetingClick}
-            isActive={isGreetingActive}
-          />
-        </div>
+      <h3>Greeting</h3>
+      <FormField fieldId="greeting-position" label="Greeting Position">
+        <PositionButtons
+          disabled={weatherPos}
+          onClick={onGreetingClick}
+          isActive={isGreetingActive}
+        />
+      </FormField>
 
-        <div style={{ marginTop: "1rem" }}>
-          <label htmlFor="date-format">
+      <FormField
+        fieldId="date-format"
+        label={
+          <>
             Date format (
             <a rel="noopener noreferrer" target="_blank" href="https://date-fns.org/docs/format">
               read more here
             </a>
             )
-          </label>
-          <input
-            type="text"
-            id="date-format"
-            placeholder={DEFAULT_DATE_FORMAT}
-            className="formInput"
-            onChange={(e) => setDateFormat(e.target.value)}
-            value={dateFormat}
-            onBlur={onDateFormat}
-          />
-        </div>
+          </>
+        }
+      >
+        <input
+          type="text"
+          id="date-format"
+          placeholder={DEFAULT_DATE_FORMAT}
+          className="formInput"
+          onChange={(e) => setDateFormat(e.target.value)}
+          value={dateFormat}
+          onBlur={onDateFormat}
+        />
+      </FormField>
 
-        <div style={{ marginTop: "1rem" }}>
-          <h3 style={{ marginBottom: "0.5rem" }}>Themes</h3>
-          <label htmlFor="show-search">Theme</label>
+      <div style={{ marginTop: "1rem" }}>
+        <h3>Themes</h3>
 
+        <FormField fieldId="theme" label="Theme">
           <div style={{ display: "flex" }}>
             <button
               onClick={() => handleThemeChange("dark")}
@@ -189,12 +193,13 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
               Light
             </button>
           </div>
-        </div>
+        </FormField>
+      </div>
 
-        <div style={{ marginTop: "1rem" }}>
-          <h3 style={{ marginBottom: "0.5rem" }}>Search</h3>
-          <label htmlFor="show-search">Search enabled</label>
+      <div style={{ marginTop: "1rem" }}>
+        <h3>Search</h3>
 
+        <FormField fieldId="search-enabled" label="Search enabled">
           <div style={{ display: "flex" }}>
             <button
               onClick={() => onSearchClick(true)}
@@ -209,27 +214,27 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
               Off
             </button>
           </div>
+        </FormField>
 
-          <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="search-engine">Search engine (Not recommended changing.)</label>
+        <FormField fieldId="search-engine" label="Search engine (Not recommended changing.)">
+          <input
+            type="url"
+            id="search-engine"
+            placeholder="https://duckduckgo.com"
+            className="formInput"
+            onChange={(e) => setSearchEngine(e.target.value)}
+            disabled={!showSearch}
+            value={searchEngine}
+            onBlur={onSearchEngine}
+            style={{ opacity: !showSearch ? 0.5 : 1 }}
+          />
+        </FormField>
+      </div>
 
-            <input
-              type="url"
-              id="search-engine"
-              placeholder="https://duckduckgo.com"
-              className="formInput"
-              onChange={(e) => setSearchEngine(e.target.value)}
-              disabled={!showSearch}
-              value={searchEngine}
-              onBlur={onSearchEngine}
-            />
-          </div>
-        </div>
+      <div style={{ marginTop: "1rem" }}>
+        <h3>Weather</h3>
 
-        <div style={{ marginTop: "1rem" }}>
-          <h3 style={{ marginBottom: "0.5rem" }}>Weather</h3>
-          <label htmlFor="show-search">Weather enabled</label>
-
+        <FormField fieldId="weather-enabled" label="Weather enabled">
           <div style={{ display: "flex" }}>
             <button
               onClick={() => onWeatherClick(true)}
@@ -244,49 +249,45 @@ export const Settings = ({ open, settings, onClose, onSettingsChange }: Props) =
               Off
             </button>
           </div>
+        </FormField>
 
-          <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="weather-unit">Weather unit</label>
-
-            <div style={{ display: "flex" }}>
-              <button
-                onClick={() => onUnitClick(Unit.METRIC)}
-                className={classes("positionBtn", "toggle", unit === Unit.METRIC && "selected")}
-              >
-                Metric
-              </button>
-              <button
-                onClick={() => onUnitClick(Unit.IMPERIAL)}
-                className={classes("positionBtn", "toggle", unit === Unit.IMPERIAL && "selected")}
-              >
-                Imperial
-              </button>
-            </div>
+        <FormField label="Weather unit" fieldId="weather-unit">
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => onUnitClick(Unit.METRIC)}
+              className={classes("positionBtn", "toggle", unit === Unit.METRIC && "selected")}
+            >
+              Metric
+            </button>
+            <button
+              onClick={() => onUnitClick(Unit.IMPERIAL)}
+              className={classes("positionBtn", "toggle", unit === Unit.IMPERIAL && "selected")}
+            >
+              Imperial
+            </button>
           </div>
+        </FormField>
 
-          <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="weather-position">Weather Position</label>
-            <PositionButtons
-              disabled={greetingPos}
-              onClick={onWeatherPosClick}
-              isActive={isWeatherActive}
-            />
-          </div>
+        <FormField fieldId="weather-position" label="Weather position">
+          <PositionButtons
+            disabled={greetingPos}
+            onClick={onWeatherPosClick}
+            isActive={isWeatherActive}
+          />
+        </FormField>
 
-          <div style={{ marginTop: "1rem" }}>
-            <label htmlFor="weather-location">Location</label>
-            <input
-              type="url"
-              id="weather-location"
-              placeholder="London"
-              className="formInput"
-              onChange={(e) => setWeatherLocation(e.target.value)}
-              disabled={!showWeather}
-              value={weatherLocation}
-              onBlur={onWeatherLocation}
-            />
-          </div>
-        </div>
+        <FormField fieldId="weather-location" label="Weather location">
+          <input
+            type="url"
+            id="weather-location"
+            placeholder="London"
+            className="formInput"
+            onChange={(e) => setWeatherLocation(e.target.value)}
+            disabled={!showWeather}
+            value={weatherLocation}
+            onBlur={onWeatherLocation}
+          />
+        </FormField>
       </div>
     </ReactModal>
   );
