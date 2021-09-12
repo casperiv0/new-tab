@@ -1,4 +1,4 @@
-import { Settings } from "src/types/Settings";
+import { DEFAULT_DATE_FORMAT, Settings } from "src/types/Settings";
 
 export const POSITION_CLASSES = ["topRight", "bottomLeft", "bottomRight"] as const;
 
@@ -25,6 +25,9 @@ export const DEFAULT_SETTINGS: Settings = {
   positions: {
     greeting: Positions.BOTTOM_RIGHT,
     weather: Positions.BOTTOM_LEFT,
+  },
+  date: {
+    format: DEFAULT_DATE_FORMAT,
   },
 
   position: undefined,
