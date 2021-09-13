@@ -1,32 +1,28 @@
 import * as React from "react";
 import Head from "next/head";
 import { Gear } from "react-bootstrap-icons";
-import { Settings as ISettings, Unit } from "types/Settings";
-import { Settings } from "components/Settings";
-import { POSITION_CLASSES, DEFAULT_SETTINGS } from "lib/constants";
+import { Unit } from "types/Settings";
+import { POSITION_CLASSES } from "lib/constants";
 import { Search } from "components/Search";
-import { getLocalSettings, saveLocalSettings } from "lib/settings";
 import { useWeather } from "hooks/useWeather";
 import { useTime } from "hooks/useTime";
+import { Settings } from "components/Settings/Settings";
+import { useSettings } from "context/SettingsContext";
 
 export default function Index() {
-  const [settings, setSettings] = React.useState<ISettings>(DEFAULT_SETTINGS);
+  const { settings } = useSettings();
   const [open, setOpen] = React.useState(false);
 
   const time = useTime(settings.date);
   const weather = useWeather(settings.weather);
 
   React.useEffect(() => {
-    const s = getLocalSettings();
-
-    setSettings(s);
-    document.body.classList.add(s.theme);
-  }, []);
-
-  function saveSettings(s: ISettings) {
-    setSettings(s);
-    saveLocalSettings(s);
-  }
+    if (settings.theme === "dark") {
+      document.body.classList.remove("light");
+    } else {
+      document.body.classList.add(settings.theme);
+    }
+  }, [settings.theme]);
 
   return (
     <>
@@ -58,14 +54,7 @@ export default function Index() {
 
         {settings.search.show && <Search settings={settings} focusable={!open} />}
 
-        <Settings
-          open={open}
-          onSettingsChange={saveSettings}
-          settings={settings}
-          onClose={() => {
-            setOpen(false);
-          }}
-        />
+        <Settings isOpen={open} onClose={() => setOpen(false)} />
       </>
     </>
   );
