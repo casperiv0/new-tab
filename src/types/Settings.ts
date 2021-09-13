@@ -6,6 +6,13 @@ export enum Unit {
   IMPERIAL = "imperial",
 }
 
+export enum Tabs {
+  GENERAL,
+  SEARCH,
+  DATE,
+  WEATHER,
+}
+
 export interface Settings {
   positions: SettingsPositions;
   theme: Theme;

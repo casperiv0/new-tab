@@ -4,3 +4,4 @@ out
 .vscode
 extension/html
 web-ext-artifacts
+.DS_store
