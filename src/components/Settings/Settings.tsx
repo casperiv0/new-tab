@@ -28,7 +28,7 @@ export const Settings = ({ isOpen, onClose }: Props) => {
     () => ({
       content: {
         background: "var(--primary)",
-        width: "40rem",
+        width: "45rem",
         maxWidth: "95%",
         height: "max-content",
 

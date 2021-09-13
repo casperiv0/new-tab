@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 200px auto;
 
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .settingsSidebar {
@@ -23,7 +23,7 @@
   list-style-type: none;
   cursor: pointer;
 
-  padding: 0.3rem 0.8rem;
+  padding: 0.4rem 0.8rem;
 
   button {
     width: 100%;
