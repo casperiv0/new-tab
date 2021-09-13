@@ -14,6 +14,7 @@ export type Theme = "dark" | "light";
 
 export const DEFAULT_SETTINGS: Settings = {
   theme: "dark",
+  backgroundUrl: null,
   search: {
     show: false,
     engine: "https://duckduckgo.com",

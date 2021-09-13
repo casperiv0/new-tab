@@ -1,9 +1,11 @@
 import { AppProps } from "next/app";
 import Script from "next/script";
+import { SettingsProvider } from "context/SettingsContext";
 import "styles/global.scss";
 import "styles/app.scss";
 import "styles/form.scss";
 import "styles/search.scss";
+import "styles/settings.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -22,7 +24,10 @@ export default function App({ Component, pageProps }: AppProps) {
       } catch {}
         `}
       </Script>
-      <Component {...pageProps} />
+
+      <SettingsProvider>
+        <Component {...pageProps} />
+      </SettingsProvider>
     </>
   );
 }

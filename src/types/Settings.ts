@@ -6,10 +6,19 @@ export enum Unit {
   IMPERIAL = "imperial",
 }
 
+export enum Tabs {
+  GENERAL,
+  APPEARANCE,
+  SEARCH,
+  DATE,
+  WEATHER,
+}
+
 export interface Settings {
   positions: SettingsPositions;
   theme: Theme;
   date: SettingsDate;
+  backgroundUrl: string | null;
 
   // new stuff
   search: SettingsSearch;
