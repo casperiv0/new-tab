@@ -11,14 +11,29 @@ export const SettingsSidebar = ({ activeTab, setActiveTab }: Props) => {
 
   return (
     <aside className="settingsSidebar">
-      <li className={classes("sidebarItem", isActive(Tabs.GENERAL))}>
-        <button onClick={() => setActiveTab(Tabs.GENERAL)}>General Setting</button>
+      <li
+        onClick={() => setActiveTab(Tabs.GENERAL)}
+        className={classes("sidebarItem", isActive(Tabs.GENERAL))}
+      >
+        <button>General Setting</button>
       </li>
-      <li className={classes("sidebarItem", isActive(Tabs.SEARCH))}>
-        <button onClick={() => setActiveTab(Tabs.SEARCH)}>Search Setting</button>
+      <li
+        onClick={() => setActiveTab(Tabs.APPEARANCE)}
+        className={classes("sidebarItem", isActive(Tabs.APPEARANCE))}
+      >
+        <button>Appearance Setting</button>
       </li>
-      <li className={classes("sidebarItem", isActive(Tabs.WEATHER))}>
-        <button onClick={() => setActiveTab(Tabs.WEATHER)}>Weather Setting</button>
+      <li
+        onClick={() => setActiveTab(Tabs.SEARCH)}
+        className={classes("sidebarItem", isActive(Tabs.SEARCH))}
+      >
+        <button>Search Setting</button>
+      </li>
+      <li
+        onClick={() => setActiveTab(Tabs.WEATHER)}
+        className={classes("sidebarItem", isActive(Tabs.WEATHER))}
+      >
+        <button>Weather Setting</button>
       </li>
     </aside>
   );

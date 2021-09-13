@@ -2,6 +2,7 @@ import * as React from "react";
 import ReactModal from "react-modal";
 import { Tabs } from "types/Settings";
 import { SettingsSidebar } from "./Sidebar";
+import { AppearanceTab } from "./Tabs/Appearance";
 import { GeneralTab } from "./Tabs/General";
 import { SearchTab } from "./Tabs/Search";
 import { WeatherTab } from "./Tabs/Weather";
@@ -80,6 +81,9 @@ const Renderer = ({ activeTab }: { activeTab: Tabs }) => {
     }
     case Tabs.SEARCH: {
       return <SearchTab />;
+    }
+    case Tabs.APPEARANCE: {
+      return <AppearanceTab />;
     }
     default: {
       return <p>Unknown Tab.</p>;

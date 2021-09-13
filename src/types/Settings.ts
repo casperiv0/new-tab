@@ -8,6 +8,7 @@ export enum Unit {
 
 export enum Tabs {
   GENERAL,
+  APPEARANCE,
   SEARCH,
   DATE,
   WEATHER,
@@ -17,6 +18,7 @@ export interface Settings {
   positions: SettingsPositions;
   theme: Theme;
   date: SettingsDate;
+  backgroundUrl: string | null;
 
   // new stuff
   search: SettingsSearch;

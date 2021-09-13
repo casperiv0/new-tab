@@ -31,6 +31,15 @@ export default function Index() {
       </Head>
 
       <>
+        {/* eslint-disable-next-line @next/next/no-img-element*/}
+        <div
+          className="backgroundImg"
+          style={{
+            opacity: settings.backgroundUrl ? 1 : 0,
+            backgroundImage: settings.backgroundUrl ? `url(${settings.backgroundUrl})` : undefined,
+          }}
+        />
+
         <button aria-label="Enter settings" onClick={() => setOpen(true)} className="settingsBtn">
           <Gear fill="var(--secondary)" width="20px" height="20px" />
         </button>
