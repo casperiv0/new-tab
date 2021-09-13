@@ -1,0 +1,24 @@
+.settingsSidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+}
+
+.sidebarItem {
+  width: 100%;
+
+  background: transparent;
+  border-radius: 0.4rem;
+  color: var(--secondary);
+  border: 1.5px solid var(--secondary);
+
+  &.active {
+    color: var(--primary);
+    background: var(--secondary);
+  }
+}
+
+.tab {
+  width: 100%;
+}

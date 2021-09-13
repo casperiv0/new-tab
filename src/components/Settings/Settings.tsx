@@ -6,13 +6,13 @@ import { GeneralTab } from "./Tabs/General";
 export const Settings = () => {
   const [activeTab, setActiveTab] = React.useState<Tabs>(Tabs.GENERAL);
 
-  <>
+  <div style={{ display: "flex" }}>
     <SettingsSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-    <_Renderer activeTab={activeTab} />
-  </>;
+    <Renderer activeTab={activeTab} />
+  </div>;
 };
 
-const _Renderer = ({ activeTab }: { activeTab: Tabs }) => {
+const Renderer = ({ activeTab }: { activeTab: Tabs }) => {
   switch (activeTab) {
     case Tabs.GENERAL: {
       return <GeneralTab />;
