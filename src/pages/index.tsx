@@ -31,7 +31,6 @@ export default function Index() {
       </Head>
 
       <>
-        {/* eslint-disable-next-line @next/next/no-img-element*/}
         <div
           className="backgroundImg"
           style={{
