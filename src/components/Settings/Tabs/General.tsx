@@ -2,8 +2,6 @@ import * as React from "react";
 import { FormField } from "components/FormField";
 import { PositionButtons } from "components/PositionButtons";
 import { useSettings } from "context/SettingsContext";
-import { classes } from "lib/classes";
-import { Theme } from "lib/constants";
 import { DEFAULT_DATE_FORMAT } from "types/Settings";
 
 export const GeneralTab = () => {
@@ -13,10 +11,6 @@ export const GeneralTab = () => {
 
   function setGreetingPosition(n: number) {
     setSettings({ ...settings, positions: { ...settings.positions, greeting: n } });
-  }
-
-  function setTheme(theme: Theme) {
-    setSettings({ ...settings, theme });
   }
 
   function onDateFormat() {
@@ -39,23 +33,6 @@ export const GeneralTab = () => {
           onClick={setGreetingPosition}
           isActive={isGreetingActive}
         />
-      </FormField>
-
-      <FormField fieldId="theme" label="Theme">
-        <div style={{ display: "flex" }}>
-          <button
-            onClick={() => setTheme("dark")}
-            className={classes("positionBtn", "toggle", settings.theme === "dark" && "selected")}
-          >
-            Dark
-          </button>
-          <button
-            onClick={() => setTheme("light")}
-            className={classes("positionBtn", "toggle", settings.theme === "light" && "selected")}
-          >
-            Light
-          </button>
-        </div>
       </FormField>
 
       <FormField
