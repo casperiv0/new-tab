@@ -8,13 +8,7 @@ import { useSettings } from "context/SettingsContext";
 export const WeatherTab = () => {
   const { settings, setSettings } = useSettings();
 
-  const [location, setLocation] = React.useState("");
-
-  React.useEffect(() => {
-    if (settings.weather.location) {
-      setLocation(settings.weather.location);
-    }
-  }, [settings.weather.location]);
+  const [location, setLocation] = React.useState(settings.weather.location ?? "");
 
   function enableOrDisableWeather(v: boolean) {
     setSettings({ ...settings, weather: { ...settings.weather, show: v } });

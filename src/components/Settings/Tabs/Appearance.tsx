@@ -5,9 +5,9 @@ import { classes } from "lib/classes";
 import { Theme } from "lib/constants";
 
 export const AppearanceTab = () => {
-  const [backgroundUrl, setBackgroundUrl] = React.useState("");
-
   const { settings, setSettings } = useSettings();
+
+  const [backgroundUrl, setBackgroundUrl] = React.useState(settings.backgroundUrl ?? "");
 
   function setTheme(theme: Theme) {
     setSettings({ ...settings, theme });

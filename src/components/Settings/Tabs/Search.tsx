@@ -4,16 +4,10 @@ import { useSettings } from "context/SettingsContext";
 import { classes } from "lib/classes";
 
 export const SearchTab = () => {
-  const [searchEngine, setSearchEngine] = React.useState("");
-
   const { settings, setSettings } = useSettings();
   const showSearch = settings.search.show;
 
-  React.useEffect(() => {
-    if (settings.search.engine) {
-      setSearchEngine(settings.search.engine);
-    }
-  }, [settings.search.engine]);
+  const [searchEngine, setSearchEngine] = React.useState(settings.search.engine ?? "");
 
   function onSearchEngine() {
     setSettings({ ...settings, search: { ...settings.search, engine: searchEngine } });

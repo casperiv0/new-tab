@@ -5,9 +5,9 @@ import { useSettings } from "context/SettingsContext";
 import { DEFAULT_DATE_FORMAT } from "types/Settings";
 
 export const GeneralTab = () => {
-  const [dateFormat, setDateFormat] = React.useState("");
-
   const { settings, setSettings } = useSettings();
+
+  const [dateFormat, setDateFormat] = React.useState(settings.date.format ?? DEFAULT_DATE_FORMAT);
 
   function setGreetingPosition(n: number) {
     setSettings({ ...settings, positions: { ...settings.positions, greeting: n } });
