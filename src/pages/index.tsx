@@ -60,7 +60,7 @@ export default function Index() {
           </div>
         ) : null}
 
-        {settings.search.show && <Search settings={settings} focusable={!open} />}
+        {settings.search.show && <Search focusable={!open} />}
 
         <Settings isOpen={open} onClose={() => setOpen(false)} />
       </>

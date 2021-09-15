@@ -18,6 +18,7 @@ export function getLocalSettings() {
     parsed.search = {
       show: parsed.showSearch ?? false,
       engine: parsed.searchEngine ?? "https://duckduckgo.com",
+      newTab: false,
     };
   }
 

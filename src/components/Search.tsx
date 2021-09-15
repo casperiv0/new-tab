@@ -1,19 +1,29 @@
 import * as React from "react";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
-import type { Settings } from "types/Settings";
+import { useSettings } from "context/SettingsContext";
 
 interface Props {
   focusable: boolean;
-  settings: Settings;
 }
 
-export const Search = ({ focusable, settings }: Props) => {
+// fallback function
+function getURL(url: string) {
+  try {
+    return new URL(url || "https://duckduckgo.com");
+  } catch {
+    return new URL("https://duckduckgo.com");
+  }
+}
+
+export const Search = ({ focusable }: Props) => {
+  const { settings } = useSettings();
+
   const [search, setSearch] = React.useState("");
   const [focused, setFocused] = React.useState(true);
   const ref = React.useRef<HTMLInputElement>(null);
 
-  const engineUrl = new URL(settings.search.engine || "https://duckduckgo.com");
+  const engineUrl = getURL(settings.search.engine);
 
   React.useEffect(() => {
     focusable && ref.current?.focus();
@@ -46,7 +56,13 @@ export const Search = ({ focusable, settings }: Props) => {
       return (window.location.href = url);
     }
 
-    return (window.location.href = `${engineUrl}?q=${encodeURIComponent(search)}`);
+    const fullURL = `${engineUrl}${encodeURIComponent(search)}`;
+
+    if (settings.search.newTab === true) {
+      return window.open(fullURL, "_blank");
+    }
+
+    return window.open(fullURL, "_self");
   }
 
   return (
