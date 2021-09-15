@@ -15,6 +15,7 @@ export type Theme = "dark" | "light";
 export const DEFAULT_SETTINGS: Settings = {
   theme: "dark",
   backgroundUrl: null,
+  bookmarks: [],
   search: {
     show: false,
     engine: "https://duckduckgo.com",
@@ -35,4 +36,4 @@ export const DEFAULT_SETTINGS: Settings = {
   position: undefined,
   searchEngine: undefined,
   showSearch: undefined,
-} as const;
+};

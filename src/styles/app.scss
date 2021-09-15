@@ -46,12 +46,14 @@
 .greetingText {
   font-size: 4em;
   text-align: end;
+  user-select: none;
 }
 
 /** h2 */
 .timeText {
   font-size: 3em;
   text-align: end;
+  user-select: none;
 
   span {
     font-size: 0.8em;
@@ -61,6 +63,7 @@
 .weatherText {
   font-size: 1.5rem;
   font-weight: 600;
+  user-select: none;
 }
 
 .modalResponsive {

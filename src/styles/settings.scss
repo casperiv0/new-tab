@@ -55,3 +55,59 @@
 
   margin-bottom: 0.5rem;
 }
+
+/* bookmarks */
+.settingsBookmarkItem {
+  position: relative;
+  display: flex;
+  margin-bottom: 0.4rem;
+
+  background: var(--primary);
+
+  button {
+    margin-left: -2px;
+    display: grid;
+    place-items: center;
+
+    padding: 0.5rem 0.8rem;
+    background: var(--primary);
+    border: 1.5px solid var(--secondary);
+    border-radius: 0 0.5rem 0.5rem 0;
+
+    color: var(--secondary);
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: 200ms;
+
+    &:hover {
+      color: var(--primary);
+      background: var(--secondary);
+    }
+  }
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    color: var(--secondary);
+    background: none;
+
+    border: 1.5px solid var(--secondary);
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+}
+
+.addBookmarkBtn {
+  @extend .sidebarItem;
+  width: max-content;
+
+  font-size: 1rem;
+  color: var(--secondary);
+
+
+  &:hover {
+    color: var(--primary);
+    background: var(--secondary);
+  }
+}

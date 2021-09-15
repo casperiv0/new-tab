@@ -12,6 +12,7 @@ export enum Tabs {
   SEARCH,
   DATE,
   WEATHER,
+  BOOKMARKS,
 }
 
 export interface Settings {
@@ -19,6 +20,7 @@ export interface Settings {
   theme: Theme;
   date: SettingsDate;
   backgroundUrl: string | null;
+  bookmarks: Bookmark[];
 
   // new stuff
   search: SettingsSearch;
@@ -52,4 +54,9 @@ export interface SettingsWeather {
 
 export interface SettingsDate {
   format: string | null;
+}
+
+export interface Bookmark {
+  url: string;
+  faviconUrl: string | null;
 }

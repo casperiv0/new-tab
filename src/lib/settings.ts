@@ -35,6 +35,10 @@ export function getLocalSettings() {
     };
   }
 
+  if (!parsed.bookmarks) {
+    parsed.bookmarks = [];
+  }
+
   return parsed;
 }
 

@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import { Tabs } from "types/Settings";
 import { SettingsSidebar } from "./Sidebar";
 import { AppearanceTab } from "./Tabs/Appearance";
+import { BookmarksTab } from "./Tabs/Bookmarks";
 import { GeneralTab } from "./Tabs/General";
 import { SearchTab } from "./Tabs/Search";
 import { WeatherTab } from "./Tabs/Weather";
@@ -83,6 +84,9 @@ const Renderer = ({ activeTab }: { activeTab: Tabs }) => {
     }
     case Tabs.APPEARANCE: {
       return <AppearanceTab />;
+    }
+    case Tabs.BOOKMARKS: {
+      return <BookmarksTab />;
     }
     default: {
       return <p>Unknown Tab.</p>;

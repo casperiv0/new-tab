@@ -35,6 +35,12 @@ export const SettingsSidebar = ({ activeTab, setActiveTab }: Props) => {
       >
         <button>Weather Setting</button>
       </li>
+      <li
+        onClick={() => setActiveTab(Tabs.BOOKMARKS)}
+        className={classes("sidebarItem", isActive(Tabs.BOOKMARKS))}
+      >
+        <button>Bookmarks</button>
+      </li>
     </aside>
   );
 };
