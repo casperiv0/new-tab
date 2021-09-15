@@ -28,7 +28,7 @@ export const DEFAULT_SETTINGS: Settings = {
   backgroundUrl: null,
   search: {
     show: false,
-    engine: "https://duckduckgo.com",
+    engine: DEFAULT_SEARCH_ENGINES.duckduckgo,
     newTab: false,
   },
   weather: {
