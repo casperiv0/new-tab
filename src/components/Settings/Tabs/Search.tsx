@@ -87,57 +87,59 @@ export const SearchTab = () => {
         </div>
       </FormField>
 
-      <FormField fieldId="new-tab-results" label="Show results in a new tab">
-        <div style={{ display: "flex" }}>
-          <button
-            disabled={!showSearch}
-            onClick={() => setNewTab(true)}
-            className={classes("positionBtn", "toggle", inNewTab === true && "selected")}
-          >
-            On
-          </button>
-          <button
-            disabled={!showSearch}
-            onClick={() => setNewTab(false)}
-            className={classes("positionBtn", "toggle", inNewTab === false && "selected")}
-          >
-            Off
-          </button>
-        </div>
-      </FormField>
-
-      <FormField fieldId="search-engine" label="Search engine">
-        <select
-          id="search-engine"
-          disabled={!showSearch}
-          className="formInput"
-          onChange={handleSelect}
-          value={selectedEngine}
-        >
-          {Object.keys(SEARCH_ENGINES).map((v) => (
-            <option value={v} key={v}>
-              {v}
-            </option>
-          ))}
-        </select>
-
-        {isCustom ? (
-          <>
-            <input
-              type="url"
-              id="custom-search-engine"
-              placeholder="https://duckduckgo.com?q="
-              className="formInput"
-              onChange={(e) => setCustomEngine(e.target.value)}
+      <fieldset className="fieldSet" disabled={!showSearch}>
+        <FormField fieldId="new-tab-results" label="Show results in a new tab">
+          <div style={{ display: "flex" }}>
+            <button
               disabled={!showSearch}
-              value={customEngine}
-              onBlur={onSearchEngine}
-              style={{ opacity: !showSearch ? 0.5 : 1 }}
-            />
-            <span className="formSpan">Must be full search URL.</span>
-          </>
-        ) : null}
-      </FormField>
+              onClick={() => setNewTab(true)}
+              className={classes("positionBtn", "toggle", inNewTab === true && "selected")}
+            >
+              On
+            </button>
+            <button
+              disabled={!showSearch}
+              onClick={() => setNewTab(false)}
+              className={classes("positionBtn", "toggle", inNewTab === false && "selected")}
+            >
+              Off
+            </button>
+          </div>
+        </FormField>
+
+        <FormField fieldId="search-engine" label="Search engine">
+          <select
+            id="search-engine"
+            disabled={!showSearch}
+            className="formInput"
+            onChange={handleSelect}
+            value={selectedEngine}
+          >
+            {Object.keys(SEARCH_ENGINES).map((v) => (
+              <option value={v} key={v}>
+                {v}
+              </option>
+            ))}
+          </select>
+
+          {isCustom ? (
+            <>
+              <input
+                type="url"
+                id="custom-search-engine"
+                placeholder="https://duckduckgo.com?q="
+                className="formInput"
+                onChange={(e) => setCustomEngine(e.target.value)}
+                disabled={!showSearch}
+                value={customEngine}
+                onBlur={onSearchEngine}
+                style={{ opacity: !showSearch ? 0.5 : 1 }}
+              />
+              <span className="formSpan">Must be full search URL.</span>
+            </>
+          ) : null}
+        </FormField>
+      </fieldset>
     </div>
   );
 };
