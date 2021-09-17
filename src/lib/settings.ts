@@ -1,5 +1,10 @@
 import { DEFAULT_DATE_FORMAT, Settings, Unit } from "types/Settings";
-import { DEFAULT_SETTINGS, LOCAL_GREETING_KEY, Positions } from "./constants";
+import {
+  DEFAULT_SEARCH_ENGINES,
+  DEFAULT_SETTINGS,
+  LOCAL_GREETING_KEY,
+  Positions,
+} from "./constants";
 
 export function getLocalSettings() {
   const local = window.localStorage.getItem(LOCAL_GREETING_KEY);
@@ -17,7 +22,7 @@ export function getLocalSettings() {
   if (!parsed.search) {
     parsed.search = {
       show: parsed.showSearch ?? false,
-      engine: parsed.searchEngine ?? "https://duckduckgo.com",
+      engine: parsed.searchEngine ?? DEFAULT_SEARCH_ENGINES.duckduckgo,
       newTab: false,
     };
   }

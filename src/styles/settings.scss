@@ -6,10 +6,14 @@
 }
 
 .settingsSidebar {
-  display: flex;
-  flex-direction: column;
-
   width: 200px;
+
+  ul {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .sidebarItem {
