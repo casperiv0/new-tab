@@ -12,6 +12,7 @@ export enum Tabs {
   SEARCH,
   DATE,
   WEATHER,
+  ADVANCED,
 }
 
 export interface Settings {

@@ -36,6 +36,12 @@ export const SettingsSidebar = ({ activeTab, setActiveTab }: Props) => {
         >
           <button>Weather Setting</button>
         </li>
+        <li
+          onClick={() => setActiveTab(Tabs.ADVANCED)}
+          className={classes("sidebarItem", isActive(Tabs.ADVANCED))}
+        >
+          <button>Advanced Setting</button>
+        </li>
       </ul>
     </aside>
   );
