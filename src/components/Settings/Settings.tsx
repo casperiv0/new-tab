@@ -2,6 +2,7 @@ import * as React from "react";
 import ReactModal from "react-modal";
 import { Tabs } from "types/Settings";
 import { SettingsSidebar } from "./Sidebar";
+import { AdvancedTab } from "./Tabs/Advanced";
 import { AppearanceTab } from "./Tabs/Appearance";
 import { GeneralTab } from "./Tabs/General";
 import { SearchTab } from "./Tabs/Search";
@@ -83,6 +84,9 @@ const Renderer = ({ activeTab }: { activeTab: Tabs }) => {
     }
     case Tabs.APPEARANCE: {
       return <AppearanceTab />;
+    }
+    case Tabs.ADVANCED: {
+      return <AdvancedTab />;
     }
     default: {
       return <p>Unknown Tab.</p>;

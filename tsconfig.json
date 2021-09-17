@@ -15,6 +15,7 @@
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
 
+    "downlevelIteration": true,
     "target": "es5",
     "module": "ESNext",
 
