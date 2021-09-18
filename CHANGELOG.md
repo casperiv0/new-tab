@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+- Better search engine selection
+- Open search results in new tab or current tab.
+
+## 0.3.1
+
+- Minor bug fixes
+
 ## 0.3.0
 
 - New settings UI

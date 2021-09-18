@@ -1,4 +1,4 @@
-import { Theme } from "lib/constants";
+import { SearchEngine, Theme } from "lib/constants";
 
 export const DEFAULT_DATE_FORMAT = "EEEE • HH:mm";
 export enum Unit {
@@ -13,6 +13,7 @@ export enum Tabs {
   DATE,
   WEATHER,
   BOOKMARKS,
+  ADVANCED,
 }
 
 export interface Settings {
@@ -43,7 +44,8 @@ export interface SettingsPositions {
 
 export interface SettingsSearch {
   show: boolean;
-  engine: string;
+  engine: SearchEngine;
+  newTab: boolean;
 }
 
 export interface SettingsWeather {

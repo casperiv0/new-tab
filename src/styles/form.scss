@@ -69,3 +69,19 @@
     cursor: not-allowed;
   }
 }
+
+.formSpan {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.fieldSet {
+  border: none;
+  transition: opacity 200ms;
+
+  &:disabled {
+    opacity: 0.2;
+    user-select: none;
+  }
+}

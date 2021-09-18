@@ -57,51 +57,53 @@ export const WeatherTab = () => {
         </div>
       </FormField>
 
-      <FormField label="Weather unit" fieldId="weather-unit">
-        <div style={{ display: "flex" }}>
-          <button
-            onClick={() => setUnit(Unit.METRIC)}
-            className={classes(
-              "positionBtn",
-              "toggle",
-              settings.weather.unit === Unit.METRIC && "selected",
-            )}
-          >
-            Metric
-          </button>
-          <button
-            onClick={() => setUnit(Unit.IMPERIAL)}
-            className={classes(
-              "positionBtn",
-              "toggle",
-              settings.weather.unit === Unit.IMPERIAL && "selected",
-            )}
-          >
-            Imperial
-          </button>
-        </div>
-      </FormField>
+      <fieldset disabled={!settings.weather.show} className="fieldSet">
+        <FormField label="Weather unit" fieldId="weather-unit">
+          <div style={{ display: "flex" }}>
+            <button
+              onClick={() => setUnit(Unit.METRIC)}
+              className={classes(
+                "positionBtn",
+                "toggle",
+                settings.weather.unit === Unit.METRIC && "selected",
+              )}
+            >
+              Metric
+            </button>
+            <button
+              onClick={() => setUnit(Unit.IMPERIAL)}
+              className={classes(
+                "positionBtn",
+                "toggle",
+                settings.weather.unit === Unit.IMPERIAL && "selected",
+              )}
+            >
+              Imperial
+            </button>
+          </div>
+        </FormField>
 
-      <FormField fieldId="weather-position" label="Weather position">
-        <PositionButtons
-          disabled={settings.positions.greeting}
-          onClick={setWeatherPosition}
-          isActive={isActive}
-        />
-      </FormField>
+        <FormField fieldId="weather-position" label="Weather position">
+          <PositionButtons
+            disabled={settings.positions.greeting}
+            onClick={setWeatherPosition}
+            isActive={isActive}
+          />
+        </FormField>
 
-      <FormField fieldId="weather-location" label="Weather location">
-        <input
-          type="url"
-          id="weather-location"
-          placeholder="London"
-          className="formInput"
-          onChange={(e) => setLocation(e.target.value)}
-          disabled={!settings.weather.show}
-          value={location}
-          onBlur={setWeatherLocation}
-        />
-      </FormField>
+        <FormField fieldId="weather-location" label="Weather location">
+          <input
+            type="url"
+            id="weather-location"
+            placeholder="London"
+            className="formInput"
+            onChange={(e) => setLocation(e.target.value)}
+            disabled={!settings.weather.show}
+            value={location}
+            onBlur={setWeatherLocation}
+          />
+        </FormField>
+      </fieldset>
     </div>
   );
 };

@@ -61,8 +61,7 @@ export default function Index() {
           </div>
         ) : null}
 
-        {/* todo: use `useSettings` for search here.  */}
-        {settings.search.show && <Search settings={settings} focusable={!open} />}
+        {settings.search.show && <Search focusable={!open} />}
         <Bookmarks />
 
         <Settings isOpen={open} onClose={() => setOpen(false)} />

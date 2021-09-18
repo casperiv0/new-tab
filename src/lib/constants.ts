@@ -12,13 +12,25 @@ export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
 
 export type Theme = "dark" | "light";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type SearchEngine = DefaultSearchEngines | (string & {});
+export type DefaultSearchEngines = keyof typeof DEFAULT_SEARCH_ENGINES;
+export const DEFAULT_SEARCH_ENGINES = {
+  duckduckgo: "https://duckduckgo.com?q=",
+  startpage: "https://www.startpage.com/sp/search?q=",
+  bravesearch: "https://search.brave.com/search?q=",
+  bing: "https://bing.com/search?q=",
+  google: "https://google.com/search?q=",
+};
+
 export const DEFAULT_SETTINGS: Settings = {
   theme: "dark",
   backgroundUrl: null,
   bookmarks: [],
   search: {
     show: false,
-    engine: "https://duckduckgo.com",
+    engine: DEFAULT_SEARCH_ENGINES.duckduckgo,
+    newTab: false,
   },
   weather: {
     show: false,

@@ -1,45 +1,54 @@
 import { DEFAULT_DATE_FORMAT, Settings, Unit } from "types/Settings";
-import { DEFAULT_SETTINGS, LOCAL_GREETING_KEY, Positions } from "./constants";
+import {
+  DEFAULT_SEARCH_ENGINES,
+  DEFAULT_SETTINGS,
+  LOCAL_GREETING_KEY,
+  Positions,
+} from "./constants";
 
-export function getLocalSettings() {
-  const local = window.localStorage.getItem(LOCAL_GREETING_KEY);
-  if (!local) return DEFAULT_SETTINGS;
-
-  const parsed = JSON.parse(local) as Settings;
-
-  if (!parsed.positions) {
-    parsed.positions = {
-      greeting: parsed.position ?? Positions.BOTTOM_RIGHT,
+export function parseSettings(settings: Settings) {
+  if (!settings.positions) {
+    settings.positions = {
+      greeting: settings.position ?? Positions.BOTTOM_RIGHT,
       weather: Positions.BOTTOM_LEFT,
     };
   }
 
-  if (!parsed.search) {
-    parsed.search = {
-      show: parsed.showSearch ?? false,
-      engine: parsed.searchEngine ?? "https://duckduckgo.com",
+  if (!settings.search) {
+    settings.search = {
+      show: settings.showSearch ?? false,
+      engine: settings.searchEngine ?? DEFAULT_SEARCH_ENGINES.duckduckgo,
+      newTab: false,
     };
   }
 
-  if (!parsed.weather) {
-    parsed.weather = {
+  if (!settings.weather) {
+    settings.weather = {
       show: false,
       location: null,
       unit: Unit.METRIC,
     };
   }
 
-  if (!parsed.date) {
-    parsed.date = {
+  if (!settings.date) {
+    settings.date = {
       format: DEFAULT_DATE_FORMAT,
     };
   }
 
-  if (!parsed.bookmarks) {
-    parsed.bookmarks = [];
+  if (!settings.bookmarks) {
+    settings.bookmarks = [];
   }
 
-  return parsed;
+  return settings;
+}
+
+export function getLocalSettings() {
+  const local = window.localStorage.getItem(LOCAL_GREETING_KEY);
+  if (!local) return DEFAULT_SETTINGS;
+
+  const parsed = JSON.parse(local) as Settings;
+  return parseSettings(parsed);
 }
 
 export function saveLocalSettings(settings: Settings) {
