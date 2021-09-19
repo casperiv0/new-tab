@@ -1,6 +1,6 @@
 .bookmarksContainer {
   position: fixed;
-  top: 25%;
+  top: 27%;
   left: 50%;
 
   transform: translate(-50%, -25%);
@@ -24,12 +24,14 @@
   border-radius: 0.5rem;
   text-decoration: none;
 
+  transition: transform 150ms;
+
   img {
     width: 4rem;
     height: 4rem;
   }
 
   &:hover {
-    background: var(--hover);
+    transform: scale(1.05);
   }
 }

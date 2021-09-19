@@ -43,8 +43,6 @@ export const BookmarksTab = () => {
 
     arr.splice(idx, 1);
 
-    console.log(arr);
-
     setSettings({ ...settings, bookmarks: arr });
   }
 
@@ -63,7 +61,7 @@ export const BookmarksTab = () => {
         <button type="submit">Add</button>
       </form>
 
-      <div>
+      <div className="settingsBookmarkItems">
         {settings.bookmarks.map((item, idx) => (
           <BookmarkItem
             key={idx}

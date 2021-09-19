@@ -4,6 +4,21 @@ import { Bookmark } from "types/Settings";
 
 const API_URL = "https://favicon-grabber.caspertheghost.me";
 
+function findLargestIcon(data: { sizes: string; purpose?: string }[]): any {
+  let temp = 0;
+  let largest = {};
+
+  data.forEach((v) => {
+    const size = parseInt(v.sizes);
+    if (temp < size && v.purpose !== "monochrome") {
+      largest = v;
+      temp = size;
+    }
+  });
+
+  return largest;
+}
+
 export const Bookmarks = () => {
   const { settings } = useSettings();
 
@@ -28,28 +43,34 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
       const res = await fetch(`${API_URL}?url=${itemUrl}`);
       const data = await res.json();
 
+      const icon = findLargestIcon(data);
+
       if (data) {
-        let url = data[5].src;
+        let url = icon?.src ?? "ERR_NO_PREVIEW";
         if (!url.startsWith("http")) {
           url = `${itemUrl}${url}`;
-          console.log(url);
         }
-        setFaviconUrl(url);
 
         const arr = [...settings.bookmarks];
         const idx = arr.indexOf(item);
+        const previewUrl = `https://preview.caspertheghost.me?url=${url}`;
 
-        arr[idx] = { ...item, faviconUrl: url };
+        arr[idx] = { ...item, faviconUrl: previewUrl };
+        setFaviconUrl(previewUrl);
 
         setSettings({ ...settings, bookmarks: arr });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [faviconUrl, item, settings]);
+  }, [faviconUrl, item, settings, setSettings]);
 
   React.useEffect(() => {
     fetchFavicon();
   }, [fetchFavicon]);
+
+  React.useEffect(() => {
+    setFaviconUrl(item.faviconUrl);
+  }, [item]);
 
   return (
     <a
@@ -59,7 +80,8 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
       rel="noopener noreferrer"
       href={item.url}
     >
-      {faviconUrl ? <img src={faviconUrl!} /> : <>test</>}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {faviconUrl ? <img src={faviconUrl!} /> : <>ERR_NO_PREVIEW</>}
     </a>
   );
 };

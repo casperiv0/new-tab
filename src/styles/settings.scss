@@ -102,13 +102,18 @@
   }
 }
 
+.settingsBookmarkItems {
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
 .addBookmarkBtn {
   @extend .sidebarItem;
   width: max-content;
 
   font-size: 1rem;
   color: var(--secondary);
-
 
   &:hover {
     color: var(--primary);
