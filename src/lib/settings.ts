@@ -36,6 +36,10 @@ export function parseSettings(settings: Settings) {
     };
   }
 
+  if (!settings.bookmarks) {
+    settings.bookmarks = [];
+  }
+
   return settings;
 }
 

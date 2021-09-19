@@ -4,6 +4,7 @@ import { Gear } from "react-bootstrap-icons";
 import { Unit } from "types/Settings";
 import { POSITION_CLASSES } from "lib/constants";
 import { Search } from "components/Search";
+import { Bookmarks } from "components/Bookmarks";
 import { useWeather } from "hooks/useWeather";
 import { useTime } from "hooks/useTime";
 import { Settings } from "components/Settings/Settings";
@@ -61,6 +62,7 @@ export default function Index() {
         ) : null}
 
         {settings.search.show && <Search focusable={!open} />}
+        <Bookmarks />
 
         <Settings isOpen={open} onClose={() => setOpen(false)} />
       </>

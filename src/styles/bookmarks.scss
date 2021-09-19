@@ -1,0 +1,37 @@
+.bookmarksContainer {
+  position: fixed;
+  top: 27%;
+  left: 50%;
+
+  transform: translate(-50%, -25%);
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 1rem;
+
+  width: 32rem;
+}
+
+.bookmarkItem {
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 0.5rem;
+  text-decoration: none;
+
+  transition: transform 150ms;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

@@ -6,6 +6,7 @@ import "styles/app.scss";
 import "styles/form.scss";
 import "styles/search.scss";
 import "styles/settings.scss";
+import "styles/bookmarks.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
