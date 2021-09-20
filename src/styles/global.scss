@@ -20,6 +20,11 @@ body.light {
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.no-cursor > * {
+  transition: cursor 200ms;
+  cursor: none !important;
+}
+
 body {
   background: var(--primary);
   color: var(--secondary);

@@ -40,6 +40,13 @@ export function parseSettings(settings: Settings) {
     settings.bookmarks = [];
   }
 
+  if (!settings.cursor) {
+    settings.cursor = {
+      enabled: false,
+      timeout: 5,
+    };
+  }
+
   return settings;
 }
 

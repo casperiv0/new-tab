@@ -44,6 +44,10 @@ export const DEFAULT_SETTINGS: Settings = {
   date: {
     format: DEFAULT_DATE_FORMAT,
   },
+  cursor: {
+    enabled: false,
+    timeout: 5,
+  },
 
   position: undefined,
   searchEngine: undefined,
