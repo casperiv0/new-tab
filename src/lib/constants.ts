@@ -46,7 +46,7 @@ export const DEFAULT_SETTINGS: Settings = {
   },
   cursor: {
     enabled: false,
-    timeout: 5_000,
+    timeout: 5,
   },
 
   position: undefined,

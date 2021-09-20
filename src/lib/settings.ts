@@ -43,7 +43,7 @@ export function parseSettings(settings: Settings) {
   if (!settings.cursor) {
     settings.cursor = {
       enabled: false,
-      timeout: 5_000,
+      timeout: 5,
     };
   }
 

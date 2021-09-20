@@ -9,6 +9,7 @@ import { useWeather } from "hooks/useWeather";
 import { useTime } from "hooks/useTime";
 import { Settings } from "components/Settings/Settings";
 import { useSettings } from "context/SettingsContext";
+import { useCursor } from "hooks/useCursor";
 
 export default function Index() {
   const { settings } = useSettings();
@@ -16,6 +17,7 @@ export default function Index() {
 
   const time = useTime(settings.date);
   const weather = useWeather(settings.weather);
+  useCursor(!open);
 
   React.useEffect(() => {
     if (settings.theme === "dark") {

@@ -86,9 +86,9 @@ export const AppearanceTab = () => {
       </FormField>
 
       <fieldset className="fieldSet" disabled={!showCursor}>
-        <FormField fieldId="hide-cursor-interval" label="Hide Cursor Interval">
+        <FormField fieldId="hide-cursor-interval" label="Hide Cursor Interval (In seconds)">
           <input
-            type="url"
+            type="number"
             id="hide-cursor-interval"
             className="formInput"
             onChange={(e) => setTimeout(e.target.valueAsNumber)}
