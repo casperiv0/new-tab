@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.0
+
+- Able to hide cursor after X second timeout (disabled by default)
+- Bookmarks
+- Minor improvements
+
+## 0.5.0
+
+- Better search engine selection
+- Open search results in new tab or current tab.
+
 ## 0.4.0
 
 - Better search engine selection
