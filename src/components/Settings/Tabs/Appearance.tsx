@@ -9,7 +9,7 @@ export const AppearanceTab = () => {
   const showCursor = settings.cursor.enabled;
 
   const [backgroundUrl, setBackgroundUrl] = React.useState(settings.backgroundUrl ?? "");
-  const [interval, setInterval] = React.useState(settings.cursor.interval ?? 5_000);
+  const [timeout, setTimeout] = React.useState(settings.cursor.timeout ?? 5_000);
 
   function setTheme(theme: Theme) {
     setSettings({ ...settings, theme });
@@ -24,7 +24,7 @@ export const AppearanceTab = () => {
   }
 
   function onInterval() {
-    setSettings({ ...settings, cursor: { ...settings.cursor, interval } });
+    setSettings({ ...settings, cursor: { ...settings.cursor, timeout } });
   }
 
   React.useEffect(() => {
@@ -91,8 +91,8 @@ export const AppearanceTab = () => {
             type="url"
             id="hide-cursor-interval"
             className="formInput"
-            onChange={(e) => setInterval(e.target.valueAsNumber)}
-            value={interval}
+            onChange={(e) => setTimeout(e.target.valueAsNumber)}
+            value={timeout}
             onBlur={onInterval}
           />
         </FormField>

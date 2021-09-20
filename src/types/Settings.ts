@@ -66,5 +66,5 @@ export interface Bookmark {
 
 export interface SettingsCursor {
   enabled: boolean;
-  interval: number;
+  timeout: number;
 }
