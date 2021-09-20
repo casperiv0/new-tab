@@ -22,6 +22,7 @@ export interface Settings {
   date: SettingsDate;
   backgroundUrl: string | null;
   bookmarks: Bookmark[];
+  cursor: SettingsCursor;
 
   // new stuff
   search: SettingsSearch;
@@ -61,4 +62,9 @@ export interface SettingsDate {
 export interface Bookmark {
   url: string;
   faviconUrl: string | null;
+}
+
+export interface SettingsCursor {
+  enabled: boolean;
+  interval: number;
 }

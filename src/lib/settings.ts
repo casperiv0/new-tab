@@ -40,6 +40,13 @@ export function parseSettings(settings: Settings) {
     settings.bookmarks = [];
   }
 
+  if (!settings.cursor) {
+    settings.cursor = {
+      enabled: false,
+      interval: 5_000,
+    };
+  }
+
   return settings;
 }
 

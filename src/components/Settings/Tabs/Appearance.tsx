@@ -6,15 +6,25 @@ import { Theme } from "lib/constants";
 
 export const AppearanceTab = () => {
   const { settings, setSettings } = useSettings();
+  const showCursor = settings.cursor.enabled;
 
   const [backgroundUrl, setBackgroundUrl] = React.useState(settings.backgroundUrl ?? "");
+  const [interval, setInterval] = React.useState(settings.cursor.interval ?? 5_000);
 
   function setTheme(theme: Theme) {
     setSettings({ ...settings, theme });
   }
 
+  function enableOrDisableCursor(v: boolean) {
+    setSettings({ ...settings, cursor: { ...settings.cursor, enabled: v } });
+  }
+
   function onBackgroundUrl() {
     setSettings({ ...settings, backgroundUrl: backgroundUrl || null });
+  }
+
+  function onInterval() {
+    setSettings({ ...settings, cursor: { ...settings.cursor, interval } });
   }
 
   React.useEffect(() => {
@@ -55,6 +65,38 @@ export const AppearanceTab = () => {
           onBlur={onBackgroundUrl}
         />
       </FormField>
+
+      <h1 className="tabTitle">Cursor Settings</h1>
+
+      <FormField fieldId="cursor" label="Hide Cursor">
+        <div style={{ display: "flex" }}>
+          <button
+            onClick={() => enableOrDisableCursor(true)}
+            className={classes("positionBtn", "toggle", showCursor === true && "selected")}
+          >
+            On
+          </button>
+          <button
+            onClick={() => enableOrDisableCursor(false)}
+            className={classes("positionBtn", "toggle", showCursor === false && "selected")}
+          >
+            Off
+          </button>
+        </div>
+      </FormField>
+
+      <fieldset className="fieldSet" disabled={!showCursor}>
+        <FormField fieldId="hide-cursor-interval" label="Hide Cursor Interval">
+          <input
+            type="url"
+            id="hide-cursor-interval"
+            className="formInput"
+            onChange={(e) => setInterval(e.target.valueAsNumber)}
+            value={interval}
+            onBlur={onInterval}
+          />
+        </FormField>
+      </fieldset>
     </div>
   );
 };
