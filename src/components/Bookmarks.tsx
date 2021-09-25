@@ -24,7 +24,7 @@ export const Bookmarks = () => {
 
   return (
     <div className="bookmarksContainer">
-      {settings.bookmarks.map((item, idx) => (
+      {settings.bookmark.bookmarks.map((item, idx) => (
         <BookmarkItem key={idx} item={item} />
       ))}
     </div>
@@ -34,6 +34,13 @@ export const Bookmarks = () => {
 const BookmarkItem = ({ item }: { item: Bookmark }) => {
   const { settings, setSettings } = useSettings();
   const [faviconUrl, setFaviconUrl] = React.useState(item.faviconUrl);
+
+  const linkProps = settings.bookmark.newTab
+    ? {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {};
 
   const fetchFavicon = React.useCallback(async () => {
     if (!faviconUrl) {
@@ -51,7 +58,7 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
           url = `${itemUrl}${url}`;
         }
 
-        const arr = [...settings.bookmarks];
+        const arr = [...settings.bookmark.bookmarks];
         const idx = arr.indexOf(item);
         const previewUrl = `https://preview.caspertheghost.me?url=${url}`;
 
@@ -73,13 +80,7 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
   }, [item]);
 
   return (
-    <a
-      title={item.url}
-      className="bookmarkItem"
-      target="_blank"
-      rel="noopener noreferrer"
-      href={item.url}
-    >
+    <a title={item.url} className="bookmarkItem" href={item.url} {...linkProps}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       {faviconUrl ? <img src={faviconUrl!} /> : <>ERR_NO_PREVIEW</>}
     </a>

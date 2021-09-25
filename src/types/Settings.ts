@@ -21,7 +21,7 @@ export interface Settings {
   theme: Theme;
   date: SettingsDate;
   backgroundUrl: string | null;
-  bookmarks: Bookmark[];
+  bookmark: SettingsBookmark;
   cursor: SettingsCursor;
 
   // new stuff
@@ -36,6 +36,9 @@ export interface Settings {
 
   /** @deprecated */
   position: number | undefined;
+
+  /** @deprecated */
+  bookmarks: Bookmark[] | undefined;
 }
 
 export interface SettingsPositions {
@@ -68,4 +71,9 @@ export interface SettingsCursor {
   enabled: boolean;
   /** timeout in seconds */
   timeout: number;
+}
+
+export interface SettingsBookmark {
+  newTab: boolean;
+  bookmarks: Bookmark[];
 }

@@ -26,7 +26,6 @@ export const DEFAULT_SEARCH_ENGINES = {
 export const DEFAULT_SETTINGS: Settings = {
   theme: "dark",
   backgroundUrl: null,
-  bookmarks: [],
   search: {
     show: false,
     engine: DEFAULT_SEARCH_ENGINES.duckduckgo,
@@ -48,7 +47,12 @@ export const DEFAULT_SETTINGS: Settings = {
     enabled: false,
     timeout: 5,
   },
+  bookmark: {
+    bookmarks: [],
+    newTab: true,
+  },
 
+  bookmarks: undefined,
   position: undefined,
   searchEngine: undefined,
   showSearch: undefined,

@@ -36,8 +36,20 @@ export function parseSettings(settings: Settings) {
     };
   }
 
-  if (!settings.bookmarks) {
-    settings.bookmarks = [];
+  if (!settings.bookmark) {
+    settings.bookmark = {
+      bookmarks: [],
+      newTab: true,
+    };
+  }
+
+  if (settings.bookmarks) {
+    settings.bookmark = {
+      bookmarks: settings.bookmarks,
+      newTab: settings.bookmark.newTab,
+    };
+
+    delete settings.bookmarks;
   }
 
   if (!settings.cursor) {
