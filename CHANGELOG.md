@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.0
+
+- Minor improvements
+- Open bookmarks in current tab
+
 ## 0.6.0
 
 - Able to hide cursor after X second timeout (disabled by default)
