@@ -14,12 +14,14 @@
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
     "noUncheckedIndexedAccess": true /* Include 'undefined' in index signature results */,
-
     "downlevelIteration": true,
     "target": "es5",
     "module": "ESNext",
-
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -29,17 +31,35 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-
     "baseUrl": ".",
     "paths": {
-      "lib/*": ["./src/lib/*"],
-      "components/*": ["./src/components/*"],
-      "styles/*": ["./src/styles/*"],
-      "types/*": ["./src/types/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "context/*": ["./src/context/*"]
-    }
+      "lib/*": [
+        "./src/lib/*"
+      ],
+      "components/*": [
+        "./src/components/*"
+      ],
+      "styles/*": [
+        "./src/styles/*"
+      ],
+      "types/*": [
+        "./src/types/*"
+      ],
+      "hooks/*": [
+        "./src/hooks/*"
+      ],
+      "context/*": [
+        "./src/context/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

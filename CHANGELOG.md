@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.1
+
+- Bump dependencies
+
 ## 0.7.0
 
 - Minor improvements
