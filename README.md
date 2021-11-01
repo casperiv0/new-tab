@@ -20,5 +20,5 @@ Inspired by <https://github.com/dustinrouillard/tabatha>. This is my âœ¨specialâ
 
 1. Install dependencies: `npm install`
 2. Package the code: `npm run pkg`
-    - To test it, first run `npm run dev:pkg`
+   - To test it, first run `npm run dev:pkg`
 3. Done!
