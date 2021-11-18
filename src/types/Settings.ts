@@ -75,5 +75,6 @@ export interface SettingsCursor {
 
 export interface SettingsBookmark {
   newTab: boolean;
+  enabled: boolean;
   bookmarks: Bookmark[];
 }

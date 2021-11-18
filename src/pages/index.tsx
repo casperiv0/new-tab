@@ -64,7 +64,7 @@ export default function Index() {
         ) : null}
 
         {settings.search.show && <Search focusable={!open} />}
-        <Bookmarks />
+        {settings.bookmark.enabled ? <Bookmarks /> : null}
 
         <Settings isOpen={open} onClose={() => setOpen(false)} />
       </>

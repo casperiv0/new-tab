@@ -50,8 +50,8 @@ export const DEFAULT_SETTINGS: Settings = {
   bookmark: {
     bookmarks: [],
     newTab: true,
+    enabled: true,
   },
-
   bookmarks: undefined,
   position: undefined,
   searchEngine: undefined,

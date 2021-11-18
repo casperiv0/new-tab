@@ -40,13 +40,19 @@ export function parseSettings(settings: Settings) {
     settings.bookmark = {
       bookmarks: [],
       newTab: true,
+      enabled: true,
     };
+  }
+
+  if (settings.bookmark && typeof settings.bookmark.enabled === "undefined") {
+    settings.bookmark.enabled = true;
   }
 
   if (settings.bookmarks) {
     settings.bookmark = {
       bookmarks: settings.bookmarks,
       newTab: settings.bookmark.newTab,
+      enabled: true,
     };
 
     delete settings.bookmarks;

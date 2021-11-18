@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0
+
+- Able to turn bookmarks on or off
+- Bump dependencies
+
 ## 0.7.1
 
 - Bump dependencies
