@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@casper124578/useful": "^1.4.2",
-    "date-fns": "^2.25.0",
+    "date-fns": "^2.27.0",
     "is-url": "^1.2.4",
     "next": "^12.0.4",
     "prepend-http": "^4.0.0",
@@ -32,10 +32,10 @@
     "@types/react-modal": "^3.13.1",
     "eslint": "^7.32.0",
     "preact": "^10.5.15",
-    "prettier": "^2.4.1",
+    "prettier": "^2.5.0",
     "sass": "^1.43.4",
     "typescript": "^4.5.2",
-    "web-ext": "^6.5.0"
+    "web-ext": "^6.6.0"
   },
   "webExt": {
     "sourceDir": "extension/html",
