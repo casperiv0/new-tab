@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.2
+
+- fix modal closing animation flash
+- Bump dependencies
+
 ## 0.8.0
 
 - Able to turn bookmarks on or off
