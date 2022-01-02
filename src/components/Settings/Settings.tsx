@@ -23,7 +23,6 @@ interface Props {
 
 export const Settings = ({ isOpen, onClose }: Props) => {
   const [animation, setAnimation] = React.useState<Animations>(Animations.OPEN);
-
   const [activeTab, setActiveTab] = React.useState<Tabs>(Tabs.GENERAL);
 
   const styles: ReactModal.Styles = React.useMemo(
@@ -38,7 +37,7 @@ export const Settings = ({ isOpen, onClose }: Props) => {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        animation: `${animation} 200ms`,
+        animation: `${animation} 200ms forwards`,
       },
       overlay: {
         background: "rgba(0,0,0,0.7)",
