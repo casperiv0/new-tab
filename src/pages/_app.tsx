@@ -11,7 +11,7 @@ import "styles/bookmarks.scss";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Script strategy="lazyOnload">
+      <Script id="load-theme" strategy="lazyOnload">
         {`
       try {
         let local = localStorage.getItem("NEW_TAB_SETTINGS");
