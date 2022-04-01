@@ -6,7 +6,7 @@ import {
   Positions,
 } from "./constants";
 
-export function parseSettings(settings: Settings) {
+export function parseSettings(settings: Partial<Settings>): Settings {
   if (!settings.positions) {
     settings.positions = {
       greeting: settings.position ?? Positions.BOTTOM_RIGHT,
@@ -44,7 +44,7 @@ export function parseSettings(settings: Settings) {
     };
   }
 
-  if (settings.bookmark && typeof settings.bookmark.enabled === "undefined") {
+  if (typeof settings.bookmark.enabled === "undefined") {
     settings.bookmark.enabled = true;
   }
 
@@ -65,7 +65,7 @@ export function parseSettings(settings: Settings) {
     };
   }
 
-  return settings;
+  return settings as Settings;
 }
 
 export function getLocalSettings() {

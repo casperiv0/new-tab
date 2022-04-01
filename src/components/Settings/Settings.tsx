@@ -18,7 +18,7 @@ ReactModal.setAppElement("#__next");
 
 interface Props {
   isOpen: boolean;
-  onClose: () => void;
+  onClose(): void;
 }
 
 export const Settings = ({ isOpen, onClose }: Props) => {

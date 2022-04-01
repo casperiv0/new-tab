@@ -3,8 +3,8 @@ import { Positions } from "lib/constants";
 
 interface PositionProps {
   disabled: number;
-  onClick: (n: number) => void;
-  isActive: (n: number) => string;
+  onClick(n: number): void;
+  isActive(n: number): string;
 }
 
 export function PositionButtons({ disabled, onClick, isActive }: PositionProps) {

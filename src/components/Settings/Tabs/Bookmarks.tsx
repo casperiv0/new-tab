@@ -97,13 +97,13 @@ export const BookmarksTab = () => {
           <div style={{ display: "flex" }}>
             <button
               onClick={() => enableOrDisable(true)}
-              className={classes("positionBtn", "toggle", enabled === true && "selected")}
+              className={classes("positionBtn", "toggle", enabled && "selected")}
             >
               On
             </button>
             <button
               onClick={() => enableOrDisable(false)}
-              className={classes("positionBtn", "toggle", enabled === false && "selected")}
+              className={classes("positionBtn", "toggle", !enabled && "selected")}
             >
               Off
             </button>
@@ -115,13 +115,13 @@ export const BookmarksTab = () => {
             <div style={{ display: "flex" }}>
               <button
                 onClick={() => setNewTab(true)}
-                className={classes("positionBtn", "toggle", inNewTab === true && "selected")}
+                className={classes("positionBtn", "toggle", inNewTab && "selected")}
               >
                 On
               </button>
               <button
                 onClick={() => setNewTab(false)}
-                className={classes("positionBtn", "toggle", inNewTab === false && "selected")}
+                className={classes("positionBtn", "toggle", !inNewTab && "selected")}
               >
                 Off
               </button>
@@ -159,12 +159,12 @@ export const BookmarksTab = () => {
 interface BookmarkItemProps {
   item: Bookmark;
   disabled?: boolean;
-  handleDelete: (item: Bookmark) => void;
-  handleUpdate: (old: Bookmark, newItem: Bookmark) => void;
+  handleDelete(item: Bookmark): void;
+  handleUpdate(old: Bookmark, newItem: Bookmark): void;
 }
 
 const BookmarkItem = ({ disabled, item, handleDelete, handleUpdate }: BookmarkItemProps) => {
-  const [url, setUrl] = React.useState(item?.url ?? "");
+  const [url, setUrl] = React.useState(item.url || "");
 
   React.useEffect(() => {
     setUrl(item.url);

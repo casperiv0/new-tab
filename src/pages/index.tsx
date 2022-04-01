@@ -54,7 +54,7 @@ export default function Index() {
         {settings.weather.show ? (
           <div
             style={{ opacity: weather ? 1 : 0, transition: "200ms" }}
-            title={weather?.weather[0]?.description!}
+            title={weather?.weather[0]?.description}
             className={`${POSITION_CLASSES[settings.positions.weather]}Container`}
           >
             <p className="weatherText">

@@ -74,13 +74,13 @@ export const SearchTab = () => {
         <div style={{ display: "flex" }}>
           <button
             onClick={() => enableOrDisableSearch(true)}
-            className={classes("positionBtn", "toggle", showSearch === true && "selected")}
+            className={classes("positionBtn", "toggle", showSearch && "selected")}
           >
             On
           </button>
           <button
             onClick={() => enableOrDisableSearch(false)}
-            className={classes("positionBtn", "toggle", showSearch === false && "selected")}
+            className={classes("positionBtn", "toggle", !showSearch && "selected")}
           >
             Off
           </button>
@@ -93,14 +93,14 @@ export const SearchTab = () => {
             <button
               disabled={!showSearch}
               onClick={() => setNewTab(true)}
-              className={classes("positionBtn", "toggle", inNewTab === true && "selected")}
+              className={classes("positionBtn", "toggle", inNewTab && "selected")}
             >
               On
             </button>
             <button
               disabled={!showSearch}
               onClick={() => setNewTab(false)}
-              className={classes("positionBtn", "toggle", inNewTab === false && "selected")}
+              className={classes("positionBtn", "toggle", !inNewTab && "selected")}
             >
               Off
             </button>

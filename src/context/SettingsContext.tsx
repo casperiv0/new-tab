@@ -5,7 +5,7 @@ import { Settings } from "types/Settings";
 
 interface Context {
   settings: Settings;
-  setSettings: (settings: Settings) => void;
+  setSettings(settings: Settings): void;
 }
 
 const SettingsContext = React.createContext<Context | undefined>(undefined);
@@ -34,7 +34,7 @@ export const SettingsProvider = ({ children }: ProviderProps) => {
 export function useSettings() {
   const context = React.useContext(SettingsContext);
   if (typeof context === "undefined") {
-    throw new Error("`useSettings` must be used within a SettingsProvider");
+    throw new TypeError("`useSettings` must be used within a SettingsProvider");
   }
 
   return context;

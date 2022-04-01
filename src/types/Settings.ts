@@ -48,7 +48,7 @@ export interface SettingsPositions {
 
 export interface SettingsSearch {
   show: boolean;
-  engine: SearchEngine;
+  engine?: SearchEngine;
   newTab: boolean;
 }
 

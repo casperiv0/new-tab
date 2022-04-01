@@ -12,7 +12,6 @@ export const LOCAL_GREETING_KEY = "NEW_TAB_SETTINGS";
 
 export type Theme = "dark" | "light";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type SearchEngine = DefaultSearchEngines | (string & {});
 export type DefaultSearchEngines = keyof typeof DEFAULT_SEARCH_ENGINES;
 export const DEFAULT_SEARCH_ENGINES = {

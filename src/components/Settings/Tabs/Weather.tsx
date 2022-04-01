@@ -36,21 +36,13 @@ export const WeatherTab = () => {
         <div style={{ display: "flex" }}>
           <button
             onClick={() => enableOrDisableWeather(true)}
-            className={classes(
-              "positionBtn",
-              "toggle",
-              settings.weather.show === true && "selected",
-            )}
+            className={classes("positionBtn", "toggle", settings.weather.show && "selected")}
           >
             On
           </button>
           <button
             onClick={() => enableOrDisableWeather(false)}
-            className={classes(
-              "positionBtn",
-              "toggle",
-              settings.weather.show === false && "selected",
-            )}
+            className={classes("positionBtn", "toggle", !settings.weather.show && "selected")}
           >
             Off
           </button>

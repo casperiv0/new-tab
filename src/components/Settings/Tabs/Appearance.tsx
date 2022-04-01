@@ -9,7 +9,7 @@ export const AppearanceTab = () => {
   const showCursor = settings.cursor.enabled;
 
   const [backgroundUrl, setBackgroundUrl] = React.useState(settings.backgroundUrl ?? "");
-  const [timeout, setTimeout] = React.useState(settings.cursor.timeout ?? 5_000);
+  const [timeout, setTimeout] = React.useState(settings.cursor.timeout || 5_000);
 
   function setTheme(theme: Theme) {
     setSettings({ ...settings, theme });
@@ -72,13 +72,13 @@ export const AppearanceTab = () => {
         <div style={{ display: "flex" }}>
           <button
             onClick={() => enableOrDisableCursor(true)}
-            className={classes("positionBtn", "toggle", showCursor === true && "selected")}
+            className={classes("positionBtn", "toggle", showCursor && "selected")}
           >
             On
           </button>
           <button
             onClick={() => enableOrDisableCursor(false)}
-            className={classes("positionBtn", "toggle", showCursor === false && "selected")}
+            className={classes("positionBtn", "toggle", !showCursor && "selected")}
           >
             Off
           </button>

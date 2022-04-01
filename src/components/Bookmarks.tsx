@@ -68,7 +68,6 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
         setSettings({ ...settings, bookmarks: arr });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [faviconUrl, item, settings, setSettings]);
 
   React.useEffect(() => {

@@ -8,7 +8,7 @@ interface Props {
 }
 
 // fallback function
-function getURL(url: string) {
+function getURL(url?: string) {
   try {
     return new URL(url || "https://duckduckgo.com");
   } catch {
@@ -58,7 +58,7 @@ export const Search = ({ focusable }: Props) => {
 
     const fullURL = `${engineUrl}${encodeURIComponent(search)}`;
 
-    if (settings.search.newTab === true) {
+    if (settings.search.newTab) {
       return window.open(fullURL, "_blank");
     }
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useDownload } from "@casper124578/useful";
+import { useDownload } from "@casper124578/useful/hooks/useDownload";
 import { FormField } from "components/FormField";
 import { useSettings } from "context/SettingsContext";
 
