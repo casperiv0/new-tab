@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "new-tab",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "author": "Dev-CasperTheGhost",
   "chrome_url_overrides": {
     "newtab": "index.html"
