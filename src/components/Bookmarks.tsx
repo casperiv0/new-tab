@@ -80,7 +80,6 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
 
   return (
     <a title={item.url} className="bookmarkItem" href={item.url} {...linkProps}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       {faviconUrl ? <img src={faviconUrl!} /> : <>ERR_NO_PREVIEW</>}
     </a>
   );

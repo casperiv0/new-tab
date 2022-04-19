@@ -2,7 +2,7 @@ import * as React from "react";
 
 interface Props {
   children: React.ReactNode;
-  label: string | React.ReactFragment;
+  label: React.ReactNode;
   fieldId: string;
 }
 
