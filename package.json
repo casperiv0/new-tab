@@ -20,7 +20,7 @@
     "react": "^18.0.0",
     "react-bootstrap-icons": "^1.8.1",
     "react-dom": "^18.0.0",
-    "react-modal": "^3.14.4"
+    "react-modal": "^3.15.1"
   },
   "devDependencies": {
     "@casper124578/eslint-config": "^4.2.0",
