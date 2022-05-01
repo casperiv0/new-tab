@@ -19,7 +19,7 @@
     "prepend-http": "^4.0.0",
     "react": "^18.0.0",
     "react-bootstrap-icons": "^1.8.2",
-    "react-dom": "^18.0.0",
+    "react-dom": "^18.1.0",
     "react-modal": "^3.15.1"
   },
   "devDependencies": {
