@@ -12,29 +12,29 @@
     "pkg": "npm run extension && web-ext build --overwrite-dest"
   },
   "dependencies": {
-    "@casper124578/useful": "^1.6.0",
+    "@casper124578/useful": "^2.0.1",
     "date-fns": "^2.28.0",
     "is-url": "^1.2.4",
     "next": "^12.1.5",
     "prepend-http": "^4.0.0",
-    "react": "^18.0.0",
+    "react": "^18.1.0",
     "react-bootstrap-icons": "^1.8.2",
-    "react-dom": "^18.0.0",
+    "react-dom": "^18.1.0",
     "react-modal": "^3.15.1"
   },
   "devDependencies": {
-    "@casper124578/eslint-config": "^4.2.0",
+    "@casper124578/eslint-config": "^4.3.0",
     "@casper124578/eslint-config-next": "^4.3.0",
-    "@casper124578/eslint-config-react": "^4.2.0",
+    "@casper124578/eslint-config-react": "^4.3.0",
     "@types/is-url": "^1.2.30",
-    "@types/react": "^18.0.5",
-    "@types/react-dom": "^18.0.1",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
     "@types/react-modal": "^3.13.1",
     "eslint": "^8.14.0",
     "preact": "^10.7.1",
     "prettier": "^2.6.2",
-    "sass": "^1.50.1",
-    "typescript": "^4.6.3",
+    "sass": "^1.51.0",
+    "typescript": "^4.6.4",
     "web-ext": "^6.8.0"
   },
   "webExt": {
