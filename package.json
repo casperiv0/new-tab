@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@casper124578/useful": "^2.0.2",
-    "date-fns": "^2.28.0",
+    "date-fns": "^2.29.1",
     "is-url": "^1.2.4",
     "next": "^12.2.0",
     "prepend-http": "^4.0.0",
