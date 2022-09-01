@@ -29,15 +29,16 @@ export const Settings = ({ isOpen, onClose }: Props) => {
     () => ({
       content: {
         background: "var(--primary)",
-        width: "45rem",
+        width: "50rem",
         maxWidth: "95%",
-        height: "420px",
+        height: "470px",
 
         position: "fixed",
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
         animation: `${animation} 200ms forwards`,
+        padding: "1rem",
       },
       overlay: {
         background: "rgba(0,0,0,0.7)",
