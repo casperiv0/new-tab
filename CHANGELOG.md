@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.0
+
+- Bump dependencies
+- App fixes and stability improvements
+
 ## 0.8.2
 
 - fix modal closing animation flash
