@@ -6,48 +6,48 @@ interface Props {
   setActiveTab: React.Dispatch<React.SetStateAction<Tabs>>;
 }
 
+const sidebarItems = [
+  {
+    label: "General Settings",
+    value: Tabs.GENERAL,
+  },
+  {
+    label: "Appearance Settings",
+    value: Tabs.APPEARANCE,
+  },
+  {
+    label: "Search Settings",
+    value: Tabs.SEARCH,
+  },
+  {
+    label: "Weather Settings",
+    value: Tabs.WEATHER,
+  },
+  {
+    label: "Bookmarks",
+    value: Tabs.BOOKMARKS,
+  },
+  {
+    label: "Advanced Settings",
+    value: Tabs.ADVANCED,
+  },
+];
+
 export const SettingsSidebar = ({ activeTab, setActiveTab }: Props) => {
   const isActive = (n: number) => (activeTab === n ? "active" : "");
 
   return (
     <aside className="settingsSidebar">
       <ul>
-        <li
-          onClick={() => setActiveTab(Tabs.GENERAL)}
-          className={classes("sidebarItem", isActive(Tabs.GENERAL))}
-        >
-          <button>General Setting</button>
-        </li>
-        <li
-          onClick={() => setActiveTab(Tabs.APPEARANCE)}
-          className={classes("sidebarItem", isActive(Tabs.APPEARANCE))}
-        >
-          <button>Appearance Setting</button>
-        </li>
-        <li
-          onClick={() => setActiveTab(Tabs.SEARCH)}
-          className={classes("sidebarItem", isActive(Tabs.SEARCH))}
-        >
-          <button>Search Setting</button>
-        </li>
-        <li
-          onClick={() => setActiveTab(Tabs.WEATHER)}
-          className={classes("sidebarItem", isActive(Tabs.WEATHER))}
-        >
-          <button>Weather Setting</button>
-        </li>
-        <li
-          onClick={() => setActiveTab(Tabs.BOOKMARKS)}
-          className={classes("sidebarItem", isActive(Tabs.BOOKMARKS))}
-        >
-          <button>Bookmarks</button>
-        </li>
-        <li
-          onClick={() => setActiveTab(Tabs.ADVANCED)}
-          className={classes("sidebarItem", isActive(Tabs.ADVANCED))}
-        >
-          <button>Advanced Setting</button>
-        </li>
+        {sidebarItems.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => setActiveTab(item.value)}
+            className={classes("sidebarItem", isActive(item.value))}
+          >
+            <button>{item.label}</button>
+          </li>
+        ))}
       </ul>
     </aside>
   );
