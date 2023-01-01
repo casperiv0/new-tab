@@ -12,7 +12,7 @@
     "pkg": "npm run extension && web-ext build --overwrite-dest"
   },
   "dependencies": {
-    "@casper124578/useful": "^2.0.4",
+    "@casper124578/useful": "^2.0.6",
     "date-fns": "^2.29.2",
     "is-url": "^1.2.4",
     "next": "^12.2.5",
