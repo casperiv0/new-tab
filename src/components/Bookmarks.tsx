@@ -60,7 +60,7 @@ const BookmarkItem = ({ item }: { item: Bookmark }) => {
 
         const arr = [...settings.bookmark.bookmarks];
         const idx = arr.indexOf(item);
-        const previewUrl = `https://preview.caspertheghost.me?url=${url}`;
+        const previewUrl = `https://preview.casperiv.dev?url=${url}`;
 
         arr[idx] = { ...item, faviconUrl: previewUrl };
         setFaviconUrl(previewUrl);
